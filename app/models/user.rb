@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
 
   #user needs slug method to name-stuff
   def slug
-    @username.downcase.gsub(' ', '-')
+    self.username.gsub(' ', '-').downcase
   end
 
   def self.find_by_slug(slug)
