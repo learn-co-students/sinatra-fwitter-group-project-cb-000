@@ -1,0 +1,11 @@
+<div id="tweet_<%=tweet.id%>" class="tweet">
+  <p><%= tweet.content %></p>
+  <% if logged_in? && current_user.has_tweet?(tweet) %>
+  <form method="GET" action="/tweets/<%=tweet.id%>/edit">
+    <button id="Edit Tweet" type="submit">Edit Tweet</button>
+  </form>
+  <% end %>
+  <form method="POST" action="/tweets/<%=tweet.id%>/delete">
+    <button id="Delete Tweet" type="submit">Delete Tweet</button>
+  </form>
+</div>

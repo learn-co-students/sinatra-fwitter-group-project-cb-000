@@ -1,0 +1,7 @@
+<% if logged_in? %>
+<h1>Welcome, <%=current_user%></h1>
+  <% Tweet.all.each do |tweet| %>
+    <%= erb :'partials/_tweet', locals: {tweet: tweet} %>
+  <% end %>
+<% end %>
+
