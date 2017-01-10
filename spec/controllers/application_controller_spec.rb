@@ -18,10 +18,12 @@ describe ApplicationController do
     end
 
     it 'signup directs user to twitter index' do
-      params = {
+      params = {:user => 
+                {
         :username => "skittles123",
         :email => "skittles@aol.com",
         :password => "rainbows"
+                }
       }
       post '/signup', params
       expect(last_response.location).to include("/tweets")
@@ -48,25 +50,22 @@ describe ApplicationController do
     end
 
     it 'does not let a user sign up without a password' do
-      params = {
+      params = {user:{
         :username => "skittles123",
         :email => "skittles@aol.com",
         :password => ""
-      }
+      }}
       post '/signup', params
       expect(last_response.location).to include('/signup')
     end
 
     it 'does not let a logged in user view the signup page' do
-      user = User.create(:username => "skittles123", :email => "skittles@aol.com", :password => "rainbows")
-      params = {
+      params = {user: {
         :username => "skittles123",
         :email => "skittles@aol.com",
         :password => "rainbows"
-      }
+      }}
       post '/signup', params
-      session = {}
-      session[:id] = user.id
       get '/signup'
       expect(last_response.location).to include('/tweets')
     end
@@ -80,10 +79,10 @@ describe ApplicationController do
 
     it 'loads the tweets index after login' do
       user = User.create(:username => "becky567", :email => "starz@aol.com", :password => "kittens")
-      params = {
+      params = {user: {
         :username => "becky567",
         :password => "kittens"
-      }
+      }}
       post '/login', params
       expect(last_response.status).to eq(302)
       follow_redirect!
@@ -94,13 +93,11 @@ describe ApplicationController do
     it 'does not let user view login page if already logged in' do
       user = User.create(:username => "becky567", :email => "starz@aol.com", :password => "kittens")
 
-      params = {
+      params = {user: {
         :username => "becky567",
         :password => "kittens"
-      }
+      }}
       post '/login', params
-      session = {}
-      session[:id] = user.id
       get '/login'
       expect(last_response.location).to include("/tweets")
     end
@@ -318,7 +315,7 @@ describe ApplicationController do
         fill_in(:username, :with => "becky567")
         fill_in(:password, :with => "kittens")
         click_button 'submit'
-        visit '/tweets/1/edit'
+        visit "/tweets/#{tweet.id}/edit"
         expect(page.status_code).to eq(200)
         expect(page.body).to include(tweet.content)
       end
@@ -393,13 +390,13 @@ describe ApplicationController do
     context "logged in" do
       it 'lets a user delete their own tweet if they are logged in' do
         user = User.create(:username => "becky567", :email => "starz@aol.com", :password => "kittens")
-        tweet = Tweet.create(:content => "tweeting!", :user_id => 1)
+        tweet = Tweet.create(:content => "tweeting!", :user_id => user.id)
         visit '/login'
 
         fill_in(:username, :with => "becky567")
         fill_in(:password, :with => "kittens")
         click_button 'submit'
-        visit 'tweets/1'
+        visit "tweets/#{tweet.id}"
         click_button "Delete Tweet"
         expect(page.status_code).to eq(200)
         expect(Tweet.find_by(:content => "tweeting!")).to eq(nil)
@@ -408,9 +405,13 @@ describe ApplicationController do
       it 'does not let a user delete a tweet they did not create' do
         user1 = User.create(:username => "becky567", :email => "starz@aol.com", :password => "kittens")
         tweet1 = Tweet.create(:content => "tweeting!", :user_id => user1.id)
+        user1.tweets << tweet1
+        user1.save
 
         user2 = User.create(:username => "silverstallion", :email => "silver@aol.com", :password => "horses")
         tweet2 = Tweet.create(:content => "look at this tweet", :user_id => user2.id)
+        user2.tweets << tweet2
+        user2.save
 
         visit '/login'
 

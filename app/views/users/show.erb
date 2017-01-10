@@ -1,0 +1,7 @@
+<h1><%=@user.username%></h1>
+<a href="/tweets/new"><button type="submit">New Tweet</button></a>
+<div id="tweets">
+  <% @user.tweets.each do |tweet| %>
+    <%= erb :'partials/_tweet', locals: {tweet: tweet} %>
+  <% end %>
+</div>
