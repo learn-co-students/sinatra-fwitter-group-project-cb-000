@@ -2,6 +2,9 @@
 
   <h1>Welcome, <%= @username %></h1><br>
   <% @tweets.each do |t|%>
-    <p><%= t.content %></p>
+    <span class="tweet"><%= t.content %></span>
+    <br><span>
+      <%= "by #{t.user.username} :: <a href='/tweets/#{t.id}'>view</a>"%> 
+      </span><br><br><br>    
   <% end %>
 </div>

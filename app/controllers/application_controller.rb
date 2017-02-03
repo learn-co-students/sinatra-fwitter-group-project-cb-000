@@ -8,7 +8,7 @@ class ApplicationController < Sinatra::Base
     enable :sessions
     set :session_secret, "fwitter"    
     #To show custom error handler in development
-    set :show_exceptions, :after_handler
+    #set :show_exceptions, :after_handler
   end
   
   get '/' do 

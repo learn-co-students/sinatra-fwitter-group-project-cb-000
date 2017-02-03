@@ -1,10 +1,10 @@
 <div class="text-center">
 
-  <h1>Edit tweet <%= @tweet.id %></h1><br>
+  <h1>Edit tweet # <%= @tweet.id %></h1><br>
   
   <form action="/tweets/<%= @tweet.id %>" method="post" class="form-inline">
       <input id="hidden" type="hidden" name="_method" value="patch">
-      <input class="form-control" type="text" name="content" 
+      <input class="form-control tweet_ctrl" type="text" name="content" 
         placeholder="Tweet" value="<%= @tweet.content %>"><br><br>
      
     <button class="btn btn-primary btn-lrg" id="submit" 
