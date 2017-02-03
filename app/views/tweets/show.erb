@@ -1,0 +1,17 @@
+<div class="text-center">
+
+  <h1>Tweet: <%= @tweet.id %></h1><br>
+    <p><%= @tweet.content %></p>
+
+  <form method="get" action="/tweets/<%= @tweet.id %>/edit">
+    <button class="btn btn-primary btn-lrg" type="submit" value="edit">
+    Edit Tweet</button>
+  </form><br>
+    
+  <form method="post" action="/tweets/<%= @tweet.id %>/delete">
+    <input id="hidden" type="hidden" name="_method" value="delete">
+    <button class="btn btn-danger btn-lrg" type="submit" value="delete">
+    Delete Tweet</button>
+  </form>  
+
+</div>

@@ -1,0 +1,7 @@
+<div class="text-center">
+
+  <h1><%= @username %>'s tweets</h1><br>
+  <% @tweets.each do |t|%>
+    <p><%= t.content %></p>
+  <% end %>
+</div>

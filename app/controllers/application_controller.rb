@@ -10,7 +10,6 @@ class ApplicationController < Sinatra::Base
   end
   
   get '/' do 
-    #Welcome page (Links to Signup & Login)
     erb :index
   end
 
