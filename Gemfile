@@ -5,12 +5,17 @@ gem 'activerecord', :require => 'active_record'
 gem 'sinatra-activerecord', :require => 'sinatra/activerecord'
 gem 'rake'
 gem 'require_all'
-gem 'sqlite3'
+gem 'sqlite3', :group => [:development, :test]
 gem 'thin'
 gem 'shotgun'
 gem 'pry'
 gem 'bcrypt'
 gem "tux"
+
+group :production do
+  gem 'thin'
+  gem 'pg'
+end
 
 group :test do
   gem 'rspec'
