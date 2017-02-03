@@ -25,6 +25,7 @@ class UsersController < ApplicationController
         email: params[:email], password: params[:password])
       
       session[:user_id] = @user.id
+      session[:username] = @user.username
       redirect to '/tweets'      
     end
   end

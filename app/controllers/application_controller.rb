@@ -7,10 +7,16 @@ class ApplicationController < Sinatra::Base
     set :views, 'app/views'
     enable :sessions
     set :session_secret, "fwitter"    
+    #To show custom error handler in development
+    set :show_exceptions, :after_handler
   end
   
   get '/' do 
     erb :index
+  end
+
+  error 400..510 do
+    erb :oops
   end
 
   helpers do
