@@ -7,13 +7,9 @@ gem 'rake'
 gem 'require_all'
 gem 'sqlite3', :group => [:development, :test]
 gem 'thin'
-gem 'shotgun'
-gem 'pry'
 gem 'bcrypt'
-gem "tux"
 
 group :production do
-  gem 'thin'
   gem 'pg'
 end
 
