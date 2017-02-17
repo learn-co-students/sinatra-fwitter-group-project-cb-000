@@ -18,40 +18,48 @@ describe ApplicationController do
     end
 
     it 'signup directs user to twitter index' do
-      params = {
+      params = {:user => {
         :username => "skittles123",
         :email => "skittles@aol.com",
         :password => "rainbows"
+      },
+        :password_validation => "rainbows"
       }
       post '/signup', params
       expect(last_response.location).to include("/tweets")
     end
 
     it 'does not let a user sign up without a username' do
-      params = {
+      params = { :user => {
         :username => "",
         :email => "skittles@aol.com",
         :password => "rainbows"
+      },
+        :password_validation => "rainbows"
       }
       post '/signup', params
       expect(last_response.location).to include('/signup')
     end
 
     it 'does not let a user sign up without an email' do
-      params = {
+      params = { :user => {
         :username => "skittles123",
         :email => "",
         :password => "rainbows"
+      },
+        :password_validation => "rainbows"
       }
       post '/signup', params
       expect(last_response.location).to include('/signup')
     end
 
     it 'does not let a user sign up without a password' do
-      params = {
+      params = { :user => {
         :username => "skittles123",
         :email => "skittles@aol.com",
         :password => ""
+      },
+        :password_validation => ""
       }
       post '/signup', params
       expect(last_response.location).to include('/signup')
@@ -59,10 +67,12 @@ describe ApplicationController do
 
     it 'does not let a logged in user view the signup page' do
       user = User.create(:username => "skittles123", :email => "skittles@aol.com", :password => "rainbows")
-      params = {
+      params = { :user => {
         :username => "skittles123",
         :email => "skittles@aol.com",
         :password => "rainbows"
+      },
+        :password_validation => "rainbows"
       }
       post '/signup', params
       session = {}
@@ -80,9 +90,10 @@ describe ApplicationController do
 
     it 'loads the tweets index after login' do
       user = User.create(:username => "becky567", :email => "starz@aol.com", :password => "kittens")
-      params = {
+      params = { :user => {
         :username => "becky567",
         :password => "kittens"
+        }
       }
       post '/login', params
       expect(last_response.status).to eq(302)
@@ -94,9 +105,10 @@ describe ApplicationController do
     it 'does not let user view login page if already logged in' do
       user = User.create(:username => "becky567", :email => "starz@aol.com", :password => "kittens")
 
-      params = {
+      params = { :user => {
         :username => "becky567",
         :password => "kittens"
+        }
       }
       post '/login', params
       session = {}
@@ -110,9 +122,10 @@ describe ApplicationController do
     it "lets a user logout if they are already logged in" do
       user = User.create(:username => "becky567", :email => "starz@aol.com", :password => "kittens")
 
-      params = {
+      params = { :user => {
         :username => "becky567",
         :password => "kittens"
+        }
       }
       post '/login', params
       get '/logout'
@@ -137,7 +150,7 @@ describe ApplicationController do
 
       fill_in(:username, :with => "becky567")
       fill_in(:password, :with => "kittens")
-      click_button 'submit'
+      click_button 'Log In'
       expect(page.current_path).to eq('/tweets')
 
 
@@ -170,7 +183,7 @@ describe ApplicationController do
 
         fill_in(:username, :with => "becky567")
         fill_in(:password, :with => "kittens")
-        click_button 'submit'
+        click_button 'Log In'
         visit "/tweets"
         expect(page.body).to include(tweet1.content)
         expect(page.body).to include(tweet2.content)
@@ -198,7 +211,7 @@ describe ApplicationController do
 
         fill_in(:username, :with => "becky567")
         fill_in(:password, :with => "kittens")
-        click_button 'submit'
+        click_button 'Log In'
         visit '/tweets/new'
         expect(page.status_code).to eq(200)
 
@@ -211,11 +224,11 @@ describe ApplicationController do
 
         fill_in(:username, :with => "becky567")
         fill_in(:password, :with => "kittens")
-        click_button 'submit'
+        click_button 'Log In'
 
         visit '/tweets/new'
         fill_in(:content, :with => "tweet!!!")
-        click_button 'submit'
+        click_button 'Tweet It'
 
         user = User.find_by(:username => "becky567")
         tweet = Tweet.find_by(:content => "tweet!!!")
@@ -232,12 +245,12 @@ describe ApplicationController do
 
         fill_in(:username, :with => "becky567")
         fill_in(:password, :with => "kittens")
-        click_button 'submit'
+        click_button 'Log In'
 
         visit '/tweets/new'
 
         fill_in(:content, :with => "tweet!!!")
-        click_button 'submit'
+        click_button 'Tweet It'
 
         user = User.find_by(:id=> user.id)
         user2 = User.find_by(:id => user2.id)
@@ -254,12 +267,12 @@ describe ApplicationController do
 
         fill_in(:username, :with => "becky567")
         fill_in(:password, :with => "kittens")
-        click_button 'submit'
+        click_button 'Log In'
 
         visit '/tweets/new'
 
         fill_in(:content, :with => "")
-        click_button 'submit'
+        click_button 'Tweet It'
 
         expect(Tweet.find_by(:content => "")).to eq(nil)
         expect(page.current_path).to eq("/tweets/new")
@@ -285,7 +298,7 @@ describe ApplicationController do
 
         fill_in(:username, :with => "becky567")
         fill_in(:password, :with => "kittens")
-        click_button 'submit'
+        click_button 'Log In'
 
         visit "/tweets/#{tweet.id}"
         expect(page.status_code).to eq(200)
@@ -317,7 +330,7 @@ describe ApplicationController do
 
         fill_in(:username, :with => "becky567")
         fill_in(:password, :with => "kittens")
-        click_button 'submit'
+        click_button 'Log In'
         visit '/tweets/1/edit'
         expect(page.status_code).to eq(200)
         expect(page.body).to include(tweet.content)
@@ -334,7 +347,7 @@ describe ApplicationController do
 
         fill_in(:username, :with => "becky567")
         fill_in(:password, :with => "kittens")
-        click_button 'submit'
+        click_button 'Log In'
         session = {}
         session[:user_id] = user1.id
         visit "/tweets/#{tweet2.id}/edit"
@@ -349,12 +362,12 @@ describe ApplicationController do
 
         fill_in(:username, :with => "becky567")
         fill_in(:password, :with => "kittens")
-        click_button 'submit'
+        click_button 'Log In'
         visit '/tweets/1/edit'
 
         fill_in(:content, :with => "i love tweeting")
 
-        click_button 'submit'
+        click_button 'Edit Tweet'
         expect(Tweet.find_by(:content => "i love tweeting")).to be_instance_of(Tweet)
         expect(Tweet.find_by(:content => "tweeting!")).to eq(nil)
 
@@ -368,12 +381,12 @@ describe ApplicationController do
 
         fill_in(:username, :with => "becky567")
         fill_in(:password, :with => "kittens")
-        click_button 'submit'
+        click_button 'Log In'
         visit '/tweets/1/edit'
 
         fill_in(:content, :with => "")
 
-        click_button 'submit'
+        click_button 'Edit Tweet'
         expect(Tweet.find_by(:content => "i love tweeting")).to be(nil)
         expect(page.current_path).to eq("/tweets/1/edit")
 
@@ -398,7 +411,7 @@ describe ApplicationController do
 
         fill_in(:username, :with => "becky567")
         fill_in(:password, :with => "kittens")
-        click_button 'submit'
+        click_button 'Log In'
         visit 'tweets/1'
         click_button "Delete Tweet"
         expect(page.status_code).to eq(200)
@@ -416,7 +429,7 @@ describe ApplicationController do
 
         fill_in(:username, :with => "becky567")
         fill_in(:password, :with => "kittens")
-        click_button 'submit'
+        click_button 'Log In'
         visit "tweets/#{tweet2.id}"
         click_button "Delete Tweet"
         expect(page.status_code).to eq(200)
