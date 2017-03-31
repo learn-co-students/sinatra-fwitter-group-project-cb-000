@@ -61,12 +61,9 @@ describe ApplicationController do
       user = User.create(:username => "skittles123", :email => "skittles@aol.com", :password => "rainbows")
       params = {
         :username => "skittles123",
-        :email => "skittles@aol.com",
         :password => "rainbows"
       }
-      post '/signup', params
-      session = {}
-      session[:id] = user.id
+      post '/login', params
       get '/signup'
       expect(last_response.location).to include('/tweets')
     end
