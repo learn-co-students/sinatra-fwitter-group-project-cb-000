@@ -1,1 +1,7 @@
-Welcome, Here is the Tweet Index
+<h1>Welcome, Here is the Tweet Index</h1>
+
+<% @tweets.each do |tweet| %>
+<p><%= tweet.content %> (<a href="/tweets/<%= tweet.id %>/edit">Edit</a>)</p>
+<% end %>
+
+<a href="/tweets/new">Create a New Tweet</a>
