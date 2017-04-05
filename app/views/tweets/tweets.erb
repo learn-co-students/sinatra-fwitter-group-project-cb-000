@@ -1,0 +1,6 @@
+<h1>this is the tweets index page</h1>
+<% if logged_in? %>
+<p>Welcome, <%= current_user.username %>!</p>
+<% else %>
+<p>you should be logged_in to see this</p>
+<% end %>
