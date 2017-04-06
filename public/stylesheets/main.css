@@ -56,3 +56,8 @@ body {
 .form-signin input {
   margin-bottom: 10px;
 }
+
+#tweet-form {
+  max-width: 500px;
+  margin: 0 auto;
+}

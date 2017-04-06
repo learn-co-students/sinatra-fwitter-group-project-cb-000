@@ -1,9 +1,13 @@
-<h1>this is the tweets index page</h1>
 <% if logged_in? %>
-  <p>Welcome, <%= current_user.username %>!</p>
-  <% @tweets.each do |tweet| %>
-    <%= tweet.content %> - <%= tweet.user.username %>
-  <% end %>
+
+  <h1>Welcome, <%= current_user.username %>!</h1>
+
+  <ul>
+    <% @tweets.each do |tweet| %>
+      <li><%= tweet.content %> - <%= tweet.user.username %></li>
+    <% end %>
+  </ul>
+
 <% else %>
   <p>you should be logged_in to see this</p>
 <% end %>
