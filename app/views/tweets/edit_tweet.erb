@@ -1,5 +1,5 @@
 <form action="/tweets/<%= @tweet.id %>" method="post">
   <input type="hidden" name="_method" value="patch">
-  <textarea name="content" rows="8" cols="80" value="<%= @tweet.content %>" required></textarea>
+  <textarea name="content" rows="8" cols="80" required><%= @tweet.content %></textarea>
   <input type="submit" name="submit" value="Submit" id="submit">
 </form>

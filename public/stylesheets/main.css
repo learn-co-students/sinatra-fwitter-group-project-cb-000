@@ -85,3 +85,11 @@ body {
   border: 2px solid #ccc;
   border-radius: 4px;
 }
+
+.individual-tweet {
+  padding: 10px;
+}
+
+.individual-tweet h1 {
+  padding-bottom: 20px;
+}
