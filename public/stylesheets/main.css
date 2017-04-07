@@ -1,3 +1,11 @@
+body {
+  background: #E7F3F8;
+}
+
+.main-content {
+  background: #fff;
+}
+
 body > .container {
   padding: 60px 15px 0;
 }
@@ -60,4 +68,20 @@ body {
 #tweet-form {
   max-width: 500px;
   margin: 0 auto;
+}
+
+
+
+/* Tweet List styles
+-------------------------------------------------- */
+#tweet-list {
+  padding: 0;
+}
+
+#tweet-list li {
+  list-style: none;
+  padding: 20px;
+  margin: 10px 0;
+  border: 2px solid #ccc;
+  border-radius: 4px;
 }
