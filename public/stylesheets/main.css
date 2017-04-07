@@ -4,10 +4,16 @@ body {
 
 .main-content {
   background: #fff;
+  padding-bottom: 15px;
+  border-radius: 5px;
 }
 
 body > .container {
   padding: 60px 15px 0;
+}
+
+.jumbotron {
+  background-color: #fff;
 }
 
 /* Sticky footer styles
@@ -76,6 +82,7 @@ body {
 -------------------------------------------------- */
 #tweet-list {
   padding: 0;
+  margin-top: 25px;
 }
 
 #tweet-list li {
