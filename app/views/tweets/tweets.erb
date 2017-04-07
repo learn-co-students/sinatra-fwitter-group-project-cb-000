@@ -6,8 +6,13 @@
   <ul id="tweet-list">
     <% @tweets.each do |tweet| %>
       <li>
-        <%= tweet.content %>
-         - <a href="/users/<%= tweet.user.slug %>"><%= tweet.user.username %></a>
+        <p>
+          <span class="date pull-right">Posted <%= tweet.created_at.in_time_zone('Mountain Time (US & Canada)').strftime("%b %d %I:%M %p") %></span>
+          <span class="glyphicon glyphicon-user"></span> <a href="/users/<%= tweet.user.slug %>"><%= tweet.user.username %></a>:
+        </p>
+        <p class="tweet-content">
+          <%= tweet.content %>
+        </p>
       </li>
     <% end %>
   </ul>

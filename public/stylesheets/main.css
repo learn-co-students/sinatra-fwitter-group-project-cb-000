@@ -87,7 +87,7 @@ body {
 
 #tweet-list li {
   list-style: none;
-  padding: 20px;
+  padding: 10px 20px 0 20px;
   margin: 10px 0;
   border: 2px solid #ccc;
   border-radius: 4px;
@@ -99,4 +99,16 @@ body {
 
 .individual-tweet h1 {
   padding-bottom: 20px;
+}
+
+.date {
+  color: #999;
+  font-style: italic;
+  font-size: 0.8em;
+}
+
+.tweet-content {
+  font-size: 1.2em;
+  position: relative;
+  top: -3px;
 }

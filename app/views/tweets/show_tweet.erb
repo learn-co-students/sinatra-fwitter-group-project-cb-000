@@ -1,5 +1,8 @@
 <div class="col-md-6 col-md-offset-3 main-content individual-tweet">
-  <h1><%= @tweet.content %></h1>
+  <p>
+    <span class="date pull-right">Posted <%= @tweet.created_at.in_time_zone('Mountain Time (US & Canada)').strftime("%b %d %I:%M %p") %></span>
+  </p>
+  <h2><%= @tweet.content %></h2>
 
   <% if current_user == @tweet.user %>
     <a class="btn btn-info" href="/tweets/<%= @tweet.id %>/edit">Edit Tweet</a>

@@ -7,10 +7,16 @@
     <ul id="tweet-list">
       <% @user.tweets.reverse_each do |tweet| %>
         <li>
-          <%= tweet.content %>
-          <% if current_user == tweet.user %>
-            <a href="/tweets/<%= tweet.id %>"><span class="glyphicon glyphicon-link pull-right"></span></a>
-          <% end %>
+          <p>
+            <span class="date pull-right">Posted <%= tweet.created_at.in_time_zone('Mountain Time (US & Canada)').strftime("%b %d %I:%M %p") %></span>
+            <span class="glyphicon glyphicon-user"></span> <a href="/users/<%= tweet.user.slug %>"><%= tweet.user.username %></a>:
+          </p>
+          <p class="tweet-content">
+            <%= tweet.content %>
+            <% if current_user == tweet.user %>
+              <a href="/tweets/<%= tweet.id %>"><span class="glyphicon glyphicon-link pull-right"></span></a>
+            <% end %>
+          </p>
         </li>
       <% end %>
     </ul>
