@@ -5,7 +5,10 @@
 
   <ul id="tweet-list">
     <% @tweets.each do |tweet| %>
-      <li><%= tweet.content %> - <a href="/users/<%= tweet.user.slug %>"><%= tweet.user.username %></a></li>
+      <li>
+        <%= tweet.content %>
+         - <a href="/users/<%= tweet.user.slug %>"><%= tweet.user.username %></a>
+      </li>
     <% end %>
   </ul>
 </div>

@@ -5,7 +5,7 @@
     <p class="text-center alert alert-info"><strong>No Tweets yet!</strong></p>
   <% else %>
     <ul id="tweet-list">
-      <% @user.tweets.each do |tweet| %>
+      <% @user.tweets.reverse_each do |tweet| %>
         <li>
           <%= tweet.content %>
           <% if current_user == tweet.user %>
