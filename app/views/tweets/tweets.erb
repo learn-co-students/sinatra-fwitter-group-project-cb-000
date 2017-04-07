@@ -11,7 +11,7 @@
           <span class="glyphicon glyphicon-user"></span> <a href="/users/<%= tweet.user.slug %>"><%= tweet.user.username %></a>:
         </p>
         <p class="tweet-content">
-          <%= tweet.content %>
+          <%= Sanitize.fragment(tweet.content) %>
         </p>
       </li>
     <% end %>

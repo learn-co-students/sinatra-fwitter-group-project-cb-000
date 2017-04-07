@@ -97,7 +97,8 @@ class ApplicationController < Sinatra::Base
   end
 
   post '/tweets' do
-    @tweet = Tweet.create(:content => params[:content])
+    content = Sanitize.fragment(params[:content])
+    @tweet = Tweet.create(:content => content)
     @tweet.user = current_user
     if @tweet.save
       redirect to '/tweets'
