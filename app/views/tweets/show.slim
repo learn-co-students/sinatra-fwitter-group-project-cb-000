@@ -1,0 +1,7 @@
+h2 Tweet #{@tweet.id}
+p = @tweet.content
+
+a href="/tweets/#{@tweet.id}/edit" Edit Tweet
+form action="/tweets/#{@tweet.id}/destroy" method="post"
+  input type="hidden" name="_method" value="delete"
+  button Delete Tweet
