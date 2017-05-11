@@ -1,0 +1,4 @@
+form action="/tweets/#{@tweet.id}" method="post"
+  textarea#content name="content" = @tweet.content
+  input type="hidden" name="_method" value="patch"
+  button submit

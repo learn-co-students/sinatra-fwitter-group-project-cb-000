@@ -1,0 +1,5 @@
+h2 Welcome, #{current_user.username}!
+
+ul
+  - @tweets.each do |tweet|
+    li = tweet.content
