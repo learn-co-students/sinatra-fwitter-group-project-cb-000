@@ -12,6 +12,7 @@ gem 'pry'
 gem 'bcrypt'
 gem 'tux'
 gem 'nokogiri'
+gem 'sinatra-contrib', :require =>'sinatra/reloader'
 
 
 group :test do
