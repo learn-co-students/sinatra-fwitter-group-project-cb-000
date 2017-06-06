@@ -22,13 +22,14 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/signup'do
+
       if logged_in?(session)
-        puts "HELLO LOGGER"
-        redirect to "/tweets"
+        puts "HELLO one whose logged in"
+        redirect to '/tweets'
       else
-        puts "EEEEEEEEEEEEEEEEEEEEE"
-    erb :'/users/create_user'
-  end
+        puts "Hello one whose not logged in"
+        erb :'/users/create_user'
+      end
   end
 
   get '/login'do
@@ -37,7 +38,7 @@ class ApplicationController < Sinatra::Base
   end
 ##########################################################################
   post '/login'do
-
+     puts params
      @user = User.find_by(username: params[:username])
      if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
@@ -53,7 +54,8 @@ class ApplicationController < Sinatra::Base
      if !params[:username].empty? && !params[:email].empty? && !params[:password].empty?
 
         @user = User.create(username: params[:username], email: params[:email], password: params[:password], password_confirmation: params[:password_confirmation])
-       redirect to "/tweets"
+        session[:user_id] = @user.id
+        redirect to "/tweets/index"
      else
        redirect to "/signup"
      end
@@ -65,11 +67,11 @@ class ApplicationController < Sinatra::Base
   helpers do
 
     def logged_in?(session)
-        !!session[:id]
+        !!session[:user_id]
     end
 
     def current_user
-      User.find_by_id(session[:id])
+      User.find_by_id(session[:user_id])
     end
   end
 end
