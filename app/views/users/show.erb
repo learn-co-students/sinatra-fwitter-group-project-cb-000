@@ -1,0 +1,24 @@
+<div class="col-md-6 col-md-offset-3 main-content">
+  <h1><%= @user.username %>'s Tweets</h1>
+
+  <% if @user.tweets.count == 0 %>
+    <p class="text-center alert alert-info"><strong>No Tweets yet!</strong></p>
+  <% else %>
+    <ul id="tweet-list">
+      <% @user.tweets.reverse_each do |tweet| %>
+        <li>
+          <p>
+            <span class="date pull-right">Posted <%= tweet.created_at.in_time_zone('Mountain Time (US & Canada)').strftime("%b %d %I:%M %p") %></span>
+            <span class="glyphicon glyphicon-user"></span> <a href="/users/<%= tweet.user.slug %>"><%= tweet.user.username %></a>:
+          </p>
+          <p class="tweet-content">
+            <%= tweet.content %>
+            <% if current_user == tweet.user %>
+              <a href="/tweets/<%= tweet.id %>"><span class="glyphicon glyphicon-link pull-right"></span></a>
+            <% end %>
+          </p>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+</div>

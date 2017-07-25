@@ -1,0 +1,14 @@
+<div class="col-md-6 col-md-offset-3 main-content individual-tweet">
+  <p>
+    <span class="date pull-right">Posted <%= @tweet.created_at.in_time_zone('Mountain Time (US & Canada)').strftime("%b %d %I:%M %p") %></span>
+  </p>
+  <h2><%= Sanitize.fragment(@tweet.content) %></h2>
+
+  <% if current_user == @tweet.user %>
+    <a class="btn btn-info" href="/tweets/<%= @tweet.id %>/edit">Edit Tweet</a>
+    <form class="pull-right" action="/tweets/<%= @tweet.id %>/delete" method="post">
+      <input type="hidden" name="_method" value="delete">
+      <input class="btn btn-danger" type="submit" value="Delete Tweet">
+    </form>
+  <% end %>
+</div>

@@ -1,0 +1,23 @@
+<% if logged_in? %>
+
+<div class="col-md-6 col-md-offset-3 main-content">
+  <h1>Welcome, <%= current_user.username %>!</h1>
+
+  <ul id="tweet-list">
+    <% @tweets.each do |tweet| %>
+      <li>
+        <p>
+          <span class="date pull-right">Posted <%= tweet.created_at.in_time_zone('Mountain Time (US & Canada)').strftime("%b %d %I:%M %p") %></span>
+          <span class="glyphicon glyphicon-user"></span> <a href="/users/<%= tweet.user.slug %>"><%= tweet.user.username %></a>:
+        </p>
+        <p class="tweet-content">
+          <%= Sanitize.fragment(tweet.content) %>
+        </p>
+      </li>
+    <% end %>
+  </ul>
+</div>
+
+<% else %>
+  <p>you should be logged_in to see this</p>
+<% end %>
