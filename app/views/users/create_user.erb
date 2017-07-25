@@ -1,0 +1,24 @@
+<% if flash.has?(:message) %>
+  <%= flash[:message] %>
+<% end %>
+<h1><u>Sign Up</u></h1>
+<form action='/signup' method='POST'>
+  <p>
+    <label for='username'>Username: </label>
+    <input type='text' name='user[username]' id='username'/>
+  </p>
+  <p>
+    <label for='email'>Email: </label>
+    <input type='text' name='user[email]' id='email'/>
+  <p>
+    <label for='password'>Password: </label>
+    <input type='text' name='user[password]' id='password'/>
+  </p>
+  <p>
+    <label for='password_validation'>Re-Enter Password: </label>
+    <input type='text' name='password_validation' id='password_validation'/>
+  </p>
+  <p>
+    <input type='submit' value='Sign Up'/>
+  </p>
+</form>
