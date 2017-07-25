@@ -1,0 +1,7 @@
+<%@user.tweets.each do |tweet|%>
+<p><%=tweet.content%></p>
+<%end%>
+
+<form method = "POST" action = "/logout">
+  <input type = "submit" name = "submit" id = "submit">
+</form>
