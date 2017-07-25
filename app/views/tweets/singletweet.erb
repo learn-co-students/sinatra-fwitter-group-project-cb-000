@@ -1,0 +1,15 @@
+<h1>Single Tweet</h1>
+<%= @tweet.content %>
+
+<br><br>
+Edit Tweet
+<form class="" action="/tweets/<%= @tweet.id %>/edit" method="post">
+  <input id="content" type="text" name="content" value="content">
+  <input type="submit" value="Edit Tweet">
+</form>
+
+  <form class="" action="/tweets/<%= @tweet.id %>/delete" method="post">
+    <input type="submit" name="name" value="Delete Tweet">
+  </form>
+  <br>
+
