@@ -1,0 +1,5 @@
+<h1>What you've been going on about.</h1>
+
+<% @user.tweet.each do |tweet| %>
+  <p><%= tweet.content %></p>
+<% end %>
