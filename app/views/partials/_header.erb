@@ -1,0 +1,21 @@
+<!-- navbar -->
+
+<div class="ui secondary pointing menu">
+  <a class="ui item logo" href="/">Fwitter</a>
+  <% if logged_in? %>
+    <!-- redirect to profile/users twets -->
+    <a class="ui item" href="/users/<%= current_user.id%>"><%= current_user.username %></a>
+  <% end %>
+
+  <!-- right-hand side menu -->
+  <div class="right menu">
+    <% if !loged_in? %>
+      <a class="ui item" href="/sessions/new">Login</a>
+    <% else %>
+      <form action="/sessions" method="post">
+        <input type="hidden" name="_method" value="delete" />
+        <input class="ui item" type="submit" name="submit" value="Logout" />
+      </form>
+    <% end %>
+  </div>
+</div>
