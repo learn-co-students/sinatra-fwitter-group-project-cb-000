@@ -1,9 +1,5 @@
-class User < ActiveRecord::Base
-  has_many :tweets
+class Tweet < ActiveRecord::Base
+  belongs_to :user
 
-  validates :username, uniqueness: true
-  validates :username, presence: true
-  validates :email, uniqueness: true
-  validates :email, presence: true
-  validates :password, presence: true
+  validates :content, presence: true
 end
