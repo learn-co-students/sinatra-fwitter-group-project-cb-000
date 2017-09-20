@@ -1,0 +1,38 @@
+<div class="signup-form">
+
+  <h1>Signup to Fwitter</h1>
+
+  <form class="ui form" action="/signup" method="post">
+
+    <div class="field">
+      <label for="username">Username</label>
+      <input id="username" type="text" name="username" placeholder="Userame" />
+    </div>
+
+    <div class="field">
+      <label for="email">Email</label>
+      <input id="email" type="email" name="email" placeholder="Email" />
+    </div>
+
+    <div class="field">
+      <label for="password">Password</label>
+      <input id="password" type="password" name="password" placeholder="Password" />
+    </div>
+
+    <!-- not 'wired up' -->
+    <div class="field">
+      <div class="ui checkbox">
+        <input id="terms" type="checkbox" />
+        <label for="terms">I agree to the Terms and Conditions</label>
+      </div>
+    </div>
+
+    <div class="field">
+      <input class="ui button" type="submit" value="Signup">
+    </div>
+
+  </form>
+
+  <p>All ready registered? <a href="/login">Login</a></p>
+
+</div>
