@@ -24,17 +24,18 @@ class ApplicationController < Sinatra::Base
     # - create session
   end
 
-  delete '/logout' do
+  get '/logout' do
     # TODO - destroy session
   end
 
   get '/signup' do
-    if session[:user_id]
+    if logged_in?
       redirect :'/tweets'
     end
     erb :'/users/create_user'
   end
 
+  # user registration
   post '/signup' do
     # {
     #   "username"=>"joe blogs",
@@ -55,7 +56,7 @@ class ApplicationController < Sinatra::Base
 
   get '/tweets' do
     # check user is logged in
-    if !session[:user_id]
+    if !logged_in?
       redirect :'/login'
     else
       # if so display all tweets
@@ -70,11 +71,25 @@ class ApplicationController < Sinatra::Base
   helpers do
 
     def logged_in?
-
+      !!@current_user
     end
 
     def current_user
+      @current_user ||= User.find(session[:user_id]) if session[:user_id]
+    end
 
+    def login(params)
+      # check the the user has been registered and that we can authenticate them
+      user = User.find(params[:username])
+      if user && user.authenticate(params[:password])
+        session[:user_id] = user.id
+      else
+        redirect :'/login'
+      end
+    end
+
+    def logout
+      session.clear
     end
 
   end
