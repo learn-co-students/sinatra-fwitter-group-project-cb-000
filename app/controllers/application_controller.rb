@@ -29,6 +29,9 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/signup' do
+    if session[:user_id]
+      redirect :'/tweets'
+    end
     erb :'/users/create_user'
   end
 
@@ -38,21 +41,28 @@ class ApplicationController < Sinatra::Base
     #   "email"=>"joe@example.com",
     #   "password"=>"password"
     # }
-    
-    # TODO
-    # create user
 
-    # log them in
-
-    # redirect to tweets index
-    redirect :'/tweets'
+    # if the user can be saved, log them in
+    user = User.new(params)
+    if user.save
+      session[:user_id] = user.id
+      redirect :'/tweets'
+    else
+      # TODO add flash message - signup failure
+      redirect :'/signup'
+    end
   end
 
   get '/tweets' do
     # check user is logged in
+    if !session[:user_id]
+      redirect :'/login'
+    else
+      # if so display all tweets
+      @tweets = Tweet.all
+      erb :'/tweets/tweets'
+    end
 
-    # if so display all tweets
-    erb :'/tweets/tweets'
   end
 
 
