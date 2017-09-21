@@ -20,14 +20,23 @@ class TweetsController < ApplicationController
   post '/tweets' do
     if logged_in?
       if params[:content] && params[:content] != ''
-        @tweet = Tweet.new(content: params[:content])
-        @tweet.user = current_user
-        @tweet.save
-        erb :'/tweets/show_tweet'
+        tweet = Tweet.new(content: params[:content])
+        tweet.user = current_user
+        tweet.save
+        redirect :"/tweets/#{tweet.id}"
       else
         # TODO add flash error message
         redirect :'/tweets/new'
       end
+    else
+      redirect :'/login'
+    end
+  end
+
+  get '/tweets/:id' do
+    if logged_in?
+      @tweet = Tweet.find(params[:id])
+      erb :'/tweets/show_tweet'
     else
       redirect :'/login'
     end
