@@ -6,6 +6,16 @@ body {
 
 }
 
+#main {
+  min-height: calc(100vh - 145px);  
+}
+
+#main,
+footer {
+  padding: 24px 32px;
+}
+
+
 ul {
   list-style: none;
   margin-left: 0;
@@ -14,10 +24,6 @@ ul {
 
 .tweet-actions .action {
   display: inline-block;
-}
-
-.tweet-actions .action.edit {
-  margin-right: 1.0em;
 }
 
 .tweet-content {

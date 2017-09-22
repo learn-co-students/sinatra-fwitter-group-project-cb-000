@@ -1,12 +1,14 @@
-<h1>Welcome, list of all users tweets</h1>
+<div id="main">
+  <h1>Welcome, list of all users tweets</h1>
 
-<ul class="tweet-list">
-  <% Tweet.all.each do |tweet|%>
+  <ul class="tweet-list">
+    <% Tweet.all.each do |tweet|%>
     <li class="tweet-content"><a href="/tweets/<%= tweet.id %>"><%= tweet.content %></a></li>
-  <% end %>
-</ul>
+    <% end %>
+  </ul>
 
-<div class="actions">
-  <a class="ui button" href="/users/<%= current_user.slug %>">My Tweets</a>
-  <a class="ui button" href="/tweets/new">Write a Tweet</a>
+  <div class="actions">
+    <a class="ui button" href="/tweets/new">Write a Tweet</a>
+  </div>
+
 </div>

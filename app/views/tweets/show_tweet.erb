@@ -1,15 +1,17 @@
-<% if current_user.id != @tweet.user.id %>
+<div id="main">
+
+  <% if current_user.id != @tweet.user.id %>
   <h1><%= @tweet.user.username %>'s tweet</h1>
-<% else %>
+  <% else %>
   <h1>My tweet</h1>
-<% end %>
+  <% end %>
 
-<h3 class="tweet-content"><%= @tweet.content %></h3>
+  <h3 class="tweet-content"><%= @tweet.content %></h3>
 
-<div class="tweet-actions">
-  <!-- disable the buttons if user not tweet owner -->
+  <div class="tweet-actions">
+    <!-- disable the buttons if user not tweet owner -->
 
-  <%# if current_user.id == @tweet.user.id %>
+    <%# if current_user.id == @tweet.user.id %>
     <!-- Edit Tweet -->
     <a class="ui button action edit" href="/tweets/<%= @tweet.id %>/edit">Edit Tweet</a>
 
@@ -18,5 +20,7 @@
       <input type="hidden" name="_method" value="delete" />
       <input class="ui button" type="submit" name="delete" value="Delete Tweet" />
     </form>
-  <%# end %>
+    <%# end %>
+  </div>
+
 </div>
