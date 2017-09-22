@@ -1,16 +1,20 @@
-<h1>My tweet</h1>
+<% if current_user.id != @tweet.user.id %>
+  <h1><%= @tweet.user.username %>'s tweet</h1>
+<% else %>
+  <h1>My tweet</h1>
+<% end %>
 
-<h3><%= @tweet.content %></h3>
+<h3 class="tweet-content"><%= @tweet.content %></h3>
 
-<div>
-  <!-- Edit Tweet -->
-  <form action="/tweets/<%= @tweet.id %>/edit" method="post">
-    <input type="hidden" name="_method" value="patch"/>
-    <input type="submit" name="edit" value="Edit Tweet" />
-  </form>
-  <!-- Delete Tweet -->
-  <form action="/tweets/<%= @tweet.id %>/delete" method="post">
-    <input type="hidden" name="_method" value="delete">
-    <input type="submit" name="delete" value="Delete Tweet">
-  </form>
+<div class="tweet-actions">
+  <% if current_user.id == @tweet.user.id %>
+    <!-- Edit Tweet -->
+    <a class="ui button action edit" href="/tweets/<%= @tweet.id %>/edit">Edit Tweet</a>
+
+    <!-- Delete Tweet -->
+    <form class="action delete" action="/tweets/<%= @tweet.id %>/delete" method="post">
+      <input type="hidden" name="_method" value="delete">
+      <input class="ui button" type="submit" name="delete" value="Delete Tweet">
+    </form>
+  <% end %>
 </div>

@@ -12,12 +12,28 @@ ul {
   padding-left: 0;
 }
 
+.tweet-actions .action {
+  display: inline-block;
+}
+
+.tweet-actions .action.edit {
+  margin-right: 1.0em;
+}
+
+.tweet-content {
+  margin-bottom: 1.0em;
+}
+
+.tweet-list {
+  margin-top: 0;
+  margin-bottom: 2.0em;
+}
 
 
 /* Typography */
 
 h1 {
-  margin-bottom: 2.0em;
+  margin-bottom: 1.0em;
 }
 
 .signup-form h1,
