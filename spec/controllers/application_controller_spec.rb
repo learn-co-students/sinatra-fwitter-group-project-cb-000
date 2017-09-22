@@ -68,8 +68,7 @@ describe ApplicationController do
       session = {}
       session[:user_id] = user.id
       get '/signup'
-      puts "location: #{last_response.location}"
-      expect(last_response.location).to include("/tweets")
+      expect(last_response.location).to include('/tweets')
     end
   end
 
@@ -103,7 +102,6 @@ describe ApplicationController do
       session = {}
       session[:user_id] = user.id
       get '/login'
-      puts "location: #{last_response.location}"
       expect(last_response.location).to include("/tweets")
     end
   end
