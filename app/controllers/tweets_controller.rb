@@ -1,5 +1,6 @@
 class TweetsController < ApplicationController
 
+  # tweets#index action
   get '/tweets' do
     # check user is logged in
     if logged_in?
@@ -9,6 +10,7 @@ class TweetsController < ApplicationController
     end
   end
 
+  # tweets#new action
   get '/tweets/new' do
     if logged_in?
       erb :'/tweets/create_tweet'
@@ -17,6 +19,7 @@ class TweetsController < ApplicationController
     end
   end
 
+  # tweets#create action
   post '/tweets' do
     if logged_in?
       if params[:content] && params[:content] != ''
@@ -33,6 +36,7 @@ class TweetsController < ApplicationController
     end
   end
 
+  # tweets#show action
   get '/tweets/:id' do
     if logged_in?
       @tweet = Tweet.find(params[:id])
@@ -41,5 +45,13 @@ class TweetsController < ApplicationController
       redirect :'/login'
     end
   end
+
+  # tweets#edit action
+
+
+  # tweets#update action
+
+
+  # tweet#delete action
 
 end
