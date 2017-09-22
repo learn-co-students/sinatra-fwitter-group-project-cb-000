@@ -40,6 +40,10 @@ class ApplicationController < Sinatra::Base
       session.clear
     end
 
+    def path_info
+      request.path_info
+    end
+
   end
 
 

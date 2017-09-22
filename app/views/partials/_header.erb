@@ -14,9 +14,13 @@
       <a class="ui item" href="/login">Login</a>
       <a class="ui item" href="/signup">Signup</a>
     <% else %>
+      <!-- http://www.sinatrarb.com/faq.html#path_info -->
       <a class="ui item" href="/logout">Logout</a>
-      <a class="ui item" href="/tweets">All tweets</a>
-      <a class="ui item" href="/users/<%= current_user.slug %>">My tweets</a>
+      <% if path_info == '/tweets' %>
+        <a class="ui item" href="/users/<%= current_user.slug %>">My tweets</a>
+      <% elsif path_info == "/users/#{current_user.slug}" %>
+        <a class="ui item" href="/tweets">All tweets</a>
+      <% end %>
     <% end %>
   </div>
 </header>
