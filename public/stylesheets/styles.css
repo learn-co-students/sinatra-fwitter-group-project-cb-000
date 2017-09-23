@@ -2,6 +2,7 @@
 
 /* General layout */
 
+
 body .wrapper,
 .ui.secondary.pointing.menu {
   max-width: 760px;
@@ -23,6 +24,10 @@ header {
 
 .ui.secondary.pointing.menu {
   border-bottom: 0;
+}
+
+.ui.secondary.pointing.menu .item {
+  padding: .78571429em .92857143em;
 }
 
 ul {
@@ -67,7 +72,11 @@ ul {
 }
 
 /* Typography */
-body * {
+body,
+h1,h2,h3, h4, h5, h6,
+li, p,
+.ui.button,
+.ui.menu  {
   font-family: 'Dosis', Helvetica, Arial, sans-serif !important;
   font-weight: 300;
 }
