@@ -79,15 +79,28 @@ ul {
   overflow: hidden;
 }
 
-.actions .ui.button {
+.ui.button {
+  background-color: white;
+  border: 1px solid rgba(34,36,38,.15);
+}
+
+.ui.button:hover {
+  background-color: #cacbcd;
+}
+
+.ui.button.action {
   border-radius: 1.8rem;
   padding: 0.6em;
   margin-right: 0;
   float: right;
 }
 
-.actions .ui.button.add,
-.actions .ui.button.edit {
+.ui.button.action i {
+  width: 1.0em;
+}
+
+.ui.button.action.delete,
+.ui.button.action.edit {
   margin-right: 0.4em;
 }
 
@@ -112,7 +125,6 @@ textarea,
   font-weight: 400;
 }
 
-.ui.form .field > label,
 p,
 header .menu .item {
   font-size: 1.4em;
@@ -123,6 +135,7 @@ header h1 a {
   font-weight: 500;
 }
 
+.ui.form .field > label,
 .ui.form textarea,
 .site-info p,
 form input {
