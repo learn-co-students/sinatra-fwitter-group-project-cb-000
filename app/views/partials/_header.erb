@@ -19,13 +19,12 @@
             <a class="ui item" href="/login">login</a>
           <% end %>
         <% else %>
-          <!-- http://www.sinatrarb.com/faq.html#path_info -->
-          <a class="ui item" href="/logout">logout</a>
           <% if path_info == '/tweets' %>
             <a class="ui item" href="/users/<%= current_user.slug %>">my tweets</a>
           <% elsif path_info == "/users/#{current_user.slug}" %>
             <a class="ui item" href="/tweets">all tweets</a>
           <% end %>
+          <a class="ui item" href="/logout">logout</a>
         <% end %>
       </div>
 </header>

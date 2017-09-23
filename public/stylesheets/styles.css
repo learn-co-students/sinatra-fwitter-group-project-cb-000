@@ -30,6 +30,10 @@ header {
   padding: .78571429em .92857143em;
 }
 
+.ui.menu .menu {
+  margin-right: 16px;
+}
+
 ul {
   list-style: none;
   margin-left: 0;
@@ -82,6 +86,7 @@ ul {
   float: right;
 }
 
+.actions .ui.button.add,
 .actions .ui.button.edit {
   margin-right: 0.4em;
 }
@@ -91,6 +96,7 @@ ul {
 body,
 h1,h2,h3, h4, h5, h6,
 li, p,
+textarea,
 .ui.button,
 .ui.menu  {
   font-family: 'Dosis', Helvetica, Arial, sans-serif !important;
@@ -106,6 +112,8 @@ li, p,
   font-weight: 400;
 }
 
+.ui.form .field > label,
+p,
 header .menu .item {
   font-size: 1.4em;
 }
@@ -115,7 +123,8 @@ header h1 a {
   font-weight: 500;
 }
 
-.ui.form .field > label,
+.ui.form textarea,
+.site-info p,
 form input {
   font-size: 1.2em;
 }

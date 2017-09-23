@@ -6,14 +6,21 @@
   <h1>My tweets</h1>
   <% end %>
 
+  <div class="actions">
+    <a class="ui button" href="/tweets/new"><i class="fa fa-plus" aria-hidden="true"></i></a>
+  </div>
+
   <ul class="tweet-list">
-    <% Tweet.all.each do |tweet| %>
-    <% if tweet.user_id == @user.id %>
-    <li class="tweet-content"><a href="/tweets/<%= tweet.id %>"><%= tweet.content %></a></li>
-    <% end %>
+    <% tweets = Tweet.all %>
+    <% if !tweets.empty? %>
+      <% tweets.each do |tweet| %>
+        <% if tweet.user_id == @user.id %>
+          <li class="tweet-content"><a href="/tweets/<%= tweet.id %>"><%= tweet.content %></a></li>
+        <% end %>
+      <% end %>
+    <% else %>
+      <p>No tweets found!</p>
     <% end %>
   </ul>
-
-  <a class="ui button" href="/tweets/new">Write a tweet</a>
 
 </div>

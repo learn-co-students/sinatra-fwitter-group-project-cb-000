@@ -15,12 +15,15 @@
     <form class="action delete" action="/tweets/<%= @tweet.id %>/delete" method="post">
       <input type="hidden" name="_method" value="delete" />
       <button class="ui button" type="submit" name="delete" value="Delete Tweet">
-        <i class="fa fa-pencil" aria-hidden="true"></i>
+        <i class="fa fa-trash-o" aria-hidden="true"></i>
       </button>
     </form>
 
     <!-- Edit Tweet -->
-    <a class="ui button action edit" href="/tweets/<%= @tweet.id %>/edit"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+    <a class="ui button action edit" href="/tweets/<%= @tweet.id %>/edit"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+
+    <!-- Add a tweet -->
+    <a class="ui button action add" href="/tweets/new"><i class="fa fa-plus" aria-hidden="true"></i></a>
 
     <%# end %>
   </div>
