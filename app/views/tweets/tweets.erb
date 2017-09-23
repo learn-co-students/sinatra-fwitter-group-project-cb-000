@@ -1,14 +1,15 @@
 <div id="main" class="wrapper">
   <h1>Welcome, list of all users tweets</h1>
 
+  <div class="actions">
+    <a class="ui button" href="/tweets/new"><i class="fa fa-plus fa-1x" aria-hidden="true"></i></a>
+  </div>
+
   <ul class="tweet-list">
     <% Tweet.all.each do |tweet|%>
     <li class="tweet-content"><a href="/tweets/<%= tweet.id %>"><%= tweet.content %></a></li>
     <% end %>
   </ul>
 
-  <div class="actions">
-    <a class="ui button" href="/tweets/new"><i class="fa fa-plus-circle" aria-hidden="true"></i></a>
-  </div>
 
 </div>

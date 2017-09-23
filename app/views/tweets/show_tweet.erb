@@ -6,21 +6,25 @@
   <h1>My tweet</h1>
   <% end %>
 
-  <h3 class="tweet-content"><%= @tweet.content %></h3>
-
-  <div class="tweet-actions">
+  <div class="actions">
     <!-- disable the buttons if user not tweet owner -->
 
     <%# if current_user.id == @tweet.user.id %>
-    <!-- Edit Tweet -->
-    <a class="ui button action edit" href="/tweets/<%= @tweet.id %>/edit">Edit Tweet</a>
 
     <!-- Delete Tweet -->
     <form class="action delete" action="/tweets/<%= @tweet.id %>/delete" method="post">
       <input type="hidden" name="_method" value="delete" />
-      <input class="ui button" type="submit" name="delete" value="Delete Tweet" />
+      <button class="ui button" type="submit" name="delete" value="Delete Tweet">
+        <i class="fa fa-pencil" aria-hidden="true"></i>
+      </button>
     </form>
+
+    <!-- Edit Tweet -->
+    <a class="ui button action edit" href="/tweets/<%= @tweet.id %>/edit"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+
     <%# end %>
   </div>
+
+  <h3 class="tweet-content"><%= @tweet.content %></h3>
 
 </div>

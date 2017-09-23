@@ -71,6 +71,22 @@ ul {
   font-size: 1.2em;
 }
 
+.actions {
+  overflow: hidden;
+}
+
+.actions .ui.button {
+  border-radius: 1.8rem;
+  padding: 0.6em;
+  margin-right: 0;
+  float: right;
+}
+
+.actions .ui.button.edit {
+  margin-right: 0.4em;
+}
+
+
 /* Typography */
 body,
 h1,h2,h3, h4, h5, h6,
@@ -120,6 +136,11 @@ h1 {
 li a {
   text-decoration: none;
 }
+
+.actions .ui.button i {
+  color: rgba(0,0,0,0.4);
+}
+
 
 /* Override Semantic-ui styles */
 
