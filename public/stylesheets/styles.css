@@ -2,12 +2,14 @@
 
 /* General layout */
 
-body {
-
+body .wrapper,
+.ui.secondary.pointing.menu {
+  max-width: 760px;
+  margin: 0 auto;
 }
 
 #main {
-  min-height: calc(100vh - 145px);
+  min-height: calc(100vh - 175px);
 }
 
 #main,
@@ -15,6 +17,13 @@ footer {
   padding: 24px 32px;
 }
 
+header {
+  border-bottom: 2px solid rgba(34,36,38,.15);
+}
+
+.ui.secondary.pointing.menu {
+  border-bottom: 0;
+}
 
 ul {
   list-style: none;
@@ -35,6 +44,27 @@ ul {
   margin-bottom: 2.0em;
 }
 
+.ui.form .field {
+  margin-bottom: 1.2em;
+}
+
+.signup-form .ui.form .field.password {
+  margin-bottom: 0.8em;
+}
+
+.signup-form .ui.form .field.terms,
+.login-form .ui.form .field.password {
+  margin-bottom: 3.2em;
+}
+
+.ui.form .ui.button {
+  width: 100%;
+}
+
+.ui.button {
+  border-radius: 1.4rem;
+  font-size: 1.2em;
+}
 
 /* Typography */
 body * {
