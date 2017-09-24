@@ -13,7 +13,7 @@
 
     <!-- Add a tweet -->
     <a class="ui button action add" href="/tweets/new"><i class="fa fa-plus" aria-hidden="true"></i></a>
-    
+
     <!-- Delete Tweet -->
     <form action="/tweets/<%= @tweet.id %>/delete" method="post">
       <input type="hidden" name="_method" value="delete" />
@@ -25,7 +25,8 @@
     <!-- Edit Tweet -->
     <a class="ui button action edit" href="/tweets/<%= @tweet.id %>/edit"><i class="fa fa-pencil" aria-hidden="true"></i></a>
 
-
+    <!-- Back to previous screen -->
+    <a class="ui button action back" href="javascript:history.back()"><i class="fa fa-reply" aria-hidden="true"></i></a>
 
     <%# end %>
   </div>
