@@ -6,6 +6,7 @@ class TweetsController < ApplicationController
     if logged_in?
       erb :'/tweets/tweets'
     else
+      flash[:message] = "You need to be logged in to view tweets"
       redirect :'/login'
     end
   end
@@ -15,6 +16,7 @@ class TweetsController < ApplicationController
     if logged_in?
       erb :'/tweets/create_tweet'
     else
+      flash[:message] = "You need to be logged in to create a tweet"
       redirect :'/login'
     end
   end
@@ -48,6 +50,7 @@ class TweetsController < ApplicationController
         redirect :"/tweets"
       end
     else
+      flash[:message] = "You need to be logged in to view a tweet"
       redirect :'/login'
     end
   end
@@ -69,6 +72,7 @@ class TweetsController < ApplicationController
         redirect :"/tweets"
       end
     else
+      flash[:message] = "You need to be logged in to edit a tweet"
       redirect :'/login'
     end
   end
