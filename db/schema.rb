@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170920105930) do
+ActiveRecord::Schema.define(version: 20170924122403) do
 
   create_table "tweets", force: :cascade do |t|
     t.string "content"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20170920105930) do
     t.string "username"
     t.string "email"
     t.string "password_digest"
+    t.string "avatar"
   end
 
 end

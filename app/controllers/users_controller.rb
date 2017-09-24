@@ -44,11 +44,19 @@ class UsersController < ApplicationController
     #   # TODO add flash message - signup failure
     #   redirect :'/signup'
     # end
+    generator = Random.new
 
     if params[:username] == "" || params[:email] == "" || params[:password] == ""
       redirect to '/signup'
     else
-      user = User.new(params)
+      random_number = generator.rand(6) + 1
+      avatar_path = "/images/avatar-#{random_number}.png"
+      # user = User.new(params)
+      user = User.new
+      user.username = params[:username]
+      user.email = params[:email]
+      user.password = params[:password]
+      user.avatar = avatar_path
       user.save
       session[:user_id] = user.id
       redirect :'/tweets'
