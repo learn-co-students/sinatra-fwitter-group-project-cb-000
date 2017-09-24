@@ -18,7 +18,15 @@
             hours = (hours == 0)? 1 : hours
             %>
             <p class="tweet-timestamp"><%= hours %>h</p>
-            <p class="tweet-content"><a href="/tweets/<%= tweet.id %>"><%= tweet.content %></a></p>
+            <p class="tweet-content">
+                <%
+                    str = tweet.content
+                    if str.size > 140
+                      str = "#{str.slice(0, 136)}..."
+                    end
+                %>
+              <a href="/tweets/<%= tweet.id %>"><%= str %></a>
+            </p>
             <div class="tweet-options">
               <i class="fa fa-heart-o" aria-hidden="true"></i>
               <i class="fa fa-comment-o" aria-hidden="true"></i>
