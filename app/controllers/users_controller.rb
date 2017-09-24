@@ -49,7 +49,7 @@ class UsersController < ApplicationController
     if params[:username] == "" || params[:email] == "" || params[:password] == ""
       redirect to '/signup'
     else
-      random_number = generator.rand(6) + 1
+      random_number = generator.rand(10) + 1
       avatar_path = "/images/avatar-#{random_number}.png"
       # user = User.new(params)
       user = User.new
