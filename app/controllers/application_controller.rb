@@ -16,6 +16,15 @@ class ApplicationController < Sinatra::Base
     erb :index
   end
 
+  # handle 404 errors
+  not_found do
+    flash[:message] = "Page not found"
+    if logged_in?
+      redirect :'/tweets'
+    else
+      redirect :'/login'
+    end
+  end
 
   helpers do
 
