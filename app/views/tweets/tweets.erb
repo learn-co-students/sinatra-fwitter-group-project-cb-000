@@ -9,8 +9,7 @@
   <% if !tweets.empty? %>
     <ul class="tweet-list">
       <% tweets.each do |tweet|%>
-      <li class="tweet-detail">
-
+        <li class="tweet-detail">
           <img src="/images/avatar-1.png" alt="profile avatar">
           <div class="tweet-wrap">
             <p class="tweet-username"><a href="/users/<%= tweet.user.slug %>"><%= tweet.user.username %></a></p>
