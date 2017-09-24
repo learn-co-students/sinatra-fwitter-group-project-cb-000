@@ -34,6 +34,7 @@ class ApplicationController < Sinatra::Base
         session[:user_id] = user.id
         redirect :"/tweets"
       else
+        flash[:message] = "Account not found, check spelling and try again"
         redirect :'/login'
       end
     end

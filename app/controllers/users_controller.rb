@@ -9,7 +9,12 @@ class UsersController < ApplicationController
   end
 
   post '/login' do
-    login(params)
+    if params[:username] != "" && params[:password] != ""
+      login(params)
+    else
+      flash[:message] = "All fields need to be completed"
+      redirect :'/login'
+    end
   end
 
   get '/logout' do
@@ -42,12 +47,12 @@ class UsersController < ApplicationController
     #   session[:user_id] = user.id
     #   redirect :"/tweets"
     # else
-    #   # TODO add flash message - signup failure
     #   redirect :'/signup'
     # end
     generator = Random.new
 
     if params[:username] == "" || params[:email] == "" || params[:password] == ""
+      flash[:message] = "All fields need to be completed"
       redirect to '/signup'
     else
       random_number = generator.rand(10) + 1
@@ -67,6 +72,7 @@ class UsersController < ApplicationController
   get '/users/:slug' do
     # if logged_in?
       @user = User.find_by_slug(params[:slug])
+
       erb :'/users/show'
     # else
     #   redirect :'/login'

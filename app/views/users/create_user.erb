@@ -1,6 +1,10 @@
 <div id="main" class="signup-form wrapper">
   <h1>Signup</h1>
-
+  <% if flash.has?(:message) %>
+    <p class="flash-message">
+      <%= flash[:message] %>
+    </p>
+  <% end %>
   <form class="ui form" action="/signup" method="post">
 
     <div class="field username">
