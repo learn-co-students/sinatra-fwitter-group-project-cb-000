@@ -44,10 +44,6 @@ ul {
   display: inline-block;
 }
 
-.tweet-content {
-  margin-bottom: 1.0em;
-}
-
 .tweet-list {
   margin-top: 0;
   margin-bottom: 2.0em;
@@ -100,25 +96,11 @@ ul {
   width: 1.0em;
 }
 
+.tweet-list li .tweet-username,
 .ui.button.action.back,
 .ui.button.action.delete,
 .ui.button.action.edit {
   margin-right: 0.4em;
-}
-
-.tweet-list li {
-    margin-bottom: 1.2em;
-}
-
-.tweet-list li a {
-  width: 100%;
-  display: inline-block;
-  background: #fff;
-  border: 1px solid rgba(34,36,38,.15);
-  color: rgba(0,0,0,.87);
-  border-radius: .28571429rem;
-  box-shadow: 0 0 0 0 transparent inset;
-  padding: 1.6em 0.8em;
 }
 
 .ui.button:hover,
@@ -126,6 +108,66 @@ ul {
 .ui.button:focus,
 .tweet-list li a:hover {
   background: #F5F8FA;
+}
+
+.tweet-list li {
+  margin-bottom: 1.2em;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border: 1px solid rgba(34,36,38,.15);
+  color: rgba(0,0,0,.87);
+  border-radius: .28571429rem;
+  box-shadow: 0 0 0 0 transparent inset;
+  padding: 1.6em 1.2em;
+}
+
+.tweet-list li img {
+  width: 80px;
+  float: left;
+  margin-right: 0.8em;
+}
+
+.tweet-list li .tweet-wrap {
+  float: left;
+
+}
+
+.tweet-list li .tweet-username,
+.tweet-list li .tweet-timestamp {
+  float: left;
+  margin-bottom: 0.2em;
+}
+
+.tweet-list li .tweet-content {
+  clear: both;
+  margin-bottom: 0.4em;
+}
+
+.tweet-list li .tweet-username a,
+.tweet-list li .tweet-content a {
+  color: rgba(0,0,0,0.87);
+}
+
+
+
+.tweet-list li .tweet-options i {
+  font-weight: 300;
+  font-size: 1.2em;
+  color: rgba(0,0,0,0.87);
+  margin-right: 0.6em;
+  cursor: pointer;
+}
+
+.tweet-list li .tweet-options i:last-child {
+  margin-right: 0;
+}
+
+.tweet-list li .tweet-username a:hover,
+.tweet-list li .tweet-content a:hover,
+.tweet-list li .tweet-options i:hover {
+  color: #4183c4;
 }
 
 /* Typography */
