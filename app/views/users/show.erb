@@ -12,7 +12,7 @@
 
   <ul class="tweet-list">
     <% count = 0 %>
-    <% Tweet.all.each do |tweet| %>
+    <% Tweet.all.reverse.each do |tweet| %>
       <% if tweet.user_id == @user.id %>
         <% count += 1 %>
         <li class="tweet-detail">

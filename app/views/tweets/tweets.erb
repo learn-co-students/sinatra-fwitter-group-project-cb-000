@@ -8,7 +8,7 @@
   <% tweets = Tweet.all %>
   <% if !tweets.empty? %>
     <ul class="tweet-list">
-      <% tweets.each do |tweet|%>
+      <% tweets.reverse.each do |tweet|%>
         <li class="tweet-detail">
           <%
             avatar_path = tweet.user.avatar
