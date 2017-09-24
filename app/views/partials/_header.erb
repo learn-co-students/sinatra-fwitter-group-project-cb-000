@@ -19,10 +19,11 @@
             <a class="ui item" href="/login">login</a>
           <% end %>
         <% else %>
-          <% if path_info == '/tweets' %>
-            <a class="ui item" href="/users/<%= current_user.slug %>">my tweets</a>
-          <% elsif path_info == "/users/#{current_user.slug}" %>
+          <%# if path_info == '/tweets' %>
+          <% if path_info == "/users/#{current_user.slug}" %>
             <a class="ui item" href="/tweets">all tweets</a>
+          <% else %>
+            <a class="ui item" href="/users/<%= current_user.slug %>">my tweets</a>
           <% end %>
           <a class="ui item" href="/logout">logout</a>
         <% end %>

@@ -32,7 +32,8 @@ class UsersController < ApplicationController
     # {
     #   "username"=>"joe blogs",
     #   "email"=>"joe@example.com",
-    #   "password"=>"password"
+    #   "password"=>"password",
+    #   "avatar" => "/images/avatar-1.png"
     # }
 
     # fails controller tests line 60 if using 'uniqueness' validation in model
