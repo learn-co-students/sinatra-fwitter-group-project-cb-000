@@ -28,7 +28,7 @@ class TweetsController < ApplicationController
         tweet.save
         redirect :"/tweets/#{tweet.id}"
       else
-        # TODO add flash error message
+        flash[:message] = "A tweet requires content to be saved!"
         redirect :'/tweets/new'
       end
     else
@@ -39,8 +39,14 @@ class TweetsController < ApplicationController
   # tweets#show action
   get '/tweets/:id' do
     if logged_in?
-      @tweet = Tweet.find(params[:id])
-      erb :'/tweets/show_tweet'
+      @tweet = Tweet.find_by(id: params[:id])
+      if @tweet
+        erb :'/tweets/show_tweet'
+      else
+        flash[:message] = "Tweet could not be found"
+        # redirect :"/users/#{current_user.slug}"
+        redirect :"/tweets"
+      end
     else
       redirect :'/login'
     end
@@ -49,11 +55,18 @@ class TweetsController < ApplicationController
   # tweets#edit action
   get '/tweets/:id/edit' do
     if logged_in?
-      @tweet = Tweet.find(params[:id])
-      if current_user.id == @tweet.user.id
-        erb :'/tweets/edit_tweet'
+      @tweet = Tweet.find_by(id: params[:id])
+      if @tweet
+        if current_user.id == @tweet.user.id
+          erb :'/tweets/edit_tweet'
+        else
+          flash[:message] = "You must be the tweet author to edit a tweet"
+          redirect :'/tweets'
+        end
       else
-        redirect :'/tweets'
+        flash[:message] = "Tweet could not be found"
+        # redirect :"/users/#{current_user.slug}"
+        redirect :"/tweets"
       end
     else
       redirect :'/login'
@@ -63,7 +76,7 @@ class TweetsController < ApplicationController
   # tweets#update action
   patch '/tweets/:id/edit' do
     if logged_in?
-      tweet = Tweet.find(params[:id])
+      tweet = Tweet.find_by(id: params[:id])
       if tweet && current_user.id == tweet.user.id
         content = params[:content]
         if content && content != ""
@@ -71,9 +84,11 @@ class TweetsController < ApplicationController
           tweet.save
           redirect :"/tweets/#{tweet.id}"
         else
+          flash[:message] = "A tweet requires content to be saved!"
           redirect :"/tweets/#{tweet.id}/edit"
         end
       else
+        flash[:message] = "Error occurred when trying to edit tweet"
         redirect :"/users/#{current_user.slug}"
       end
     else
@@ -84,11 +99,12 @@ class TweetsController < ApplicationController
   # tweet#delete action
   delete '/tweets/:id/delete' do
     if logged_in?
-      tweet = Tweet.find(params[:id])
+      tweet = Tweet.find_by(id: params[:id])
       if tweet && current_user.id == tweet.user.id
         tweet.delete
         redirect :"/users/#{current_user.slug}"
       else
+        flash[:message] = "You must be the tweet author to delete a tweet"
         redirect :"/tweets"
       end
     else

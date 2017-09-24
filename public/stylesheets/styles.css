@@ -44,7 +44,16 @@ ul {
   display: inline-block;
 }
 
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}
+
 .tweet-list {
+  clear: both;
   margin-top: 0;
   margin-bottom: 2.0em;
 }

@@ -1,6 +1,12 @@
 <div id="main" class="wrapper">
   <h1>Create a tweet!</h1>
 
+  <% if flash.has?(:message) %>
+    <p class="flash-message">
+      <%= flash[:message] %>
+    </p>
+  <% end %>
+
   <form class="ui form" action="/tweets" method="post">
     <div class="field">
       <label for="content">Tweet</label>

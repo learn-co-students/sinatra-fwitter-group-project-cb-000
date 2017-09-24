@@ -1,7 +1,13 @@
 <div id="main" class="wrapper">
   <h1>Welcome, view all tweets</h1>
 
-  <div class="actions">
+  <% if flash.has?(:message) %>
+    <p class="flash-message left">
+      <%= flash[:message] %>
+    </p>
+  <% end %>
+
+  <div class="actions right">
     <a class="ui button action add" href="/tweets/new"><i class="fa fa-plus" aria-hidden="true"></i></a>
   </div>
 
