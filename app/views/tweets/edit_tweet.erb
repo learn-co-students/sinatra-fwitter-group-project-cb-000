@@ -1,0 +1,22 @@
+<div id="main" class="wrapper">
+  <h1>Edit Tweet</h1>
+
+  <% if flash.has?(:message) %>
+    <p class="flash-message">
+      <%= flash[:message] %>
+    </p>
+  <% end %>
+
+  <form class="ui form" action="/tweets/<%= @tweet.id %>/edit" method="post">
+    <input type="hidden" name="_method" value="patch">
+    <div class="field">
+      <label for="content">Tweet</label>
+      <textarea id="content" name="content" rows="6" cols="60" ><%= @tweet.content %></textarea>
+    </div>
+
+    <div class="field">
+      <input class="ui button" id="submit" type="submit" value="Update">
+    </div>
+  </form>
+
+</div>

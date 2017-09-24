@@ -1,0 +1,63 @@
+<div id="main" class="wrapper">
+
+  <% if current_user.username != @user.username %>
+  <h1><%= @user.username %>'s tweets</h1>
+  <% else %>
+  <h1>My tweets</h1>
+  <% end %>
+
+  <% if flash.has?(:message) %>
+    <p class="flash-message left">
+      <%= flash[:message] %>
+    </p>
+  <% end %>
+  
+  <div class="actions right">
+    <a class="ui button action add" href="/tweets/new"><i class="fa fa-plus" aria-hidden="true"></i></a>
+  </div>
+
+  <ul class="tweet-list">
+    <% count = 0 %>
+    <% Tweet.all.reverse.each do |tweet| %>
+      <% if tweet.user_id == @user.id %>
+        <% count += 1 %>
+        <li class="tweet-detail">
+          <%
+            avatar_path = tweet.user.avatar
+            if !avatar_path || avatar_path == ''
+              avatar_path = '/images/avatar-1.png'
+            end
+          %>
+          <img src="<%= avatar_path %>" alt="profile avatar">
+          <div class="tweet-wrap">
+            <p class="tweet-username"><a href="/users/<%= tweet.user.slug %>"><%= tweet.user.username %></a></p>
+            <%
+            hours = (Time.now.to_i - tweet.created_at.to_i)/60/60
+            hours = (hours == 0)? 1 : hours
+            %>
+            <p class="tweet-timestamp"><%= hours %>h</p>
+            <p class="tweet-content">
+                <%
+                    str = tweet.content
+                    if str.size > 140
+                      str = "#{str.slice(0, 136)}..."
+                    end
+                %>
+              <a href="/tweets/<%= tweet.id %>"><%= str %></a>
+            </p>
+            <div class="tweet-options">
+              <i class="fa fa-heart-o" aria-hidden="true"></i>
+              <i class="fa fa-comment-o" aria-hidden="true"></i>
+              <i class="fa fa-retweet" aria-hidden="true"></i>
+              <i class="fa fa-envelope-o" aria-hidden="true"></i>
+            </div>
+          </div>
+        </li>
+      <% end %>
+    <% end %>
+    <% if count == 0 %>
+      <p>No tweets found!</p>
+    <% end %>
+  </ul>
+
+</div>

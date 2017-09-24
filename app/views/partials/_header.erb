@@ -1,0 +1,31 @@
+<!-- navbar -->
+<header>
+  <div class="ui secondary pointing menu">
+
+      <% if logged_in? %>
+        <h1><a class="ui item" href="/tweets">fwitter</a></h1>
+      <% else %>
+        <h1><a class="ui item" href="/">fwitter</a></h1>
+      <% end %>
+
+      <!-- right-hand side menu -->
+      <div class="right menu">
+        <% if !logged_in? %>
+          <% if path_info == '/signup' %>
+            <a class="ui item" href="/login">login</a>
+          <% elsif path_info == '/login' %>
+            <a class="ui item" href="/signup">signup</a>
+          <% else %>
+            <a class="ui item" href="/login">login</a>
+          <% end %>
+        <% else %>
+          <%# if path_info == '/tweets' %>
+          <% if path_info == "/users/#{current_user.slug}" %>
+            <a class="ui item" href="/tweets">all tweets</a>
+          <% else %>
+            <a class="ui item" href="/users/<%= current_user.slug %>">my tweets</a>
+          <% end %>
+          <a class="ui item" href="/logout">logout</a>
+        <% end %>
+      </div>
+</header>

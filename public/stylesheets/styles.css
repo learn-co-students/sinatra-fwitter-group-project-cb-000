@@ -1,0 +1,253 @@
+/* custom styles */
+
+/* General layout */
+
+
+body .wrapper,
+.ui.secondary.pointing.menu {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+#main {
+  min-height: calc(100vh - 175px);
+}
+
+#main,
+footer {
+  padding: 24px 32px;
+}
+
+header {
+  border-bottom: 2px solid rgba(34,36,38,.15);
+}
+
+.ui.secondary.pointing.menu {
+  border-bottom: 0;
+}
+
+.ui.secondary.pointing.menu .item {
+  padding: .78571429em .92857143em;
+}
+
+.ui.menu .menu {
+  margin-right: 16px;
+}
+
+ul {
+  list-style: none;
+  margin-left: 0;
+  padding-left: 0;
+}
+
+.tweet-actions .action {
+  display: inline-block;
+}
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}
+
+.tweet-list {
+  clear: both;
+  margin-top: 0;
+  margin-bottom: 2.0em;
+}
+
+.ui.form .field {
+  margin-bottom: 1.2em;
+}
+
+.signup-form .ui.form .field.password {
+  margin-bottom: 0.8em;
+}
+
+.signup-form .ui.form .field.terms,
+.login-form .ui.form .field.password {
+  margin-bottom: 3.2em;
+}
+
+.ui.form .ui.button {
+  width: 100%;
+}
+
+.ui.button {
+  border-radius: 1.4rem;
+  font-size: 1.2em;
+}
+
+.actions {
+  overflow: hidden;
+  margin-bottom: 1.6em;
+}
+
+.ui.button {
+  background-color: white;
+  border: 1px solid rgba(34,36,38,.15);
+}
+
+/*.ui.button:hover {
+  background-color: #cacbcd;
+}*/
+
+.ui.button.action {
+  border-radius: 1.8rem;
+  padding: 0.6em;
+  margin-right: 0;
+  float: right;
+}
+
+.ui.button.action i {
+  width: 1.0em;
+}
+
+.tweet-list li .tweet-username,
+.ui.button.action.back,
+.ui.button.action.delete,
+.ui.button.action.edit {
+  margin-right: 0.4em;
+}
+
+.ui.button:hover,
+.ui.button:active,
+.ui.button:focus,
+.tweet-list li a:hover {
+  background: #F5F8FA;
+}
+
+.tweet-list li {
+  margin-bottom: 1.2em;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border: 1px solid rgba(34,36,38,.15);
+  color: rgba(0,0,0,.87);
+  border-radius: .28571429rem;
+  box-shadow: 0 0 0 0 transparent inset;
+  padding: 1.6em 1.2em;
+}
+
+.tweet-list li img {
+display: inline-block;
+  width: 80px;
+  height: 80px;
+  float: left;
+  margin-right: 0.8em;
+}
+
+.tweet-list li .tweet-wrap {
+  float: left;
+
+}
+
+.tweet-list li .tweet-username,
+.tweet-list li .tweet-timestamp {
+  float: left;
+  margin-bottom: 0.2em;
+}
+
+.tweet-list li .tweet-content {
+  clear: both;
+  margin-bottom: 0.4em;
+}
+
+.tweet-list li .tweet-username a,
+.tweet-list li .tweet-content a {
+  color: rgba(0,0,0,0.87);
+}
+
+
+
+.tweet-list li .tweet-options i {
+  font-weight: 300;
+  font-size: 1.2em;
+  color: rgba(0,0,0,0.87);
+  margin-right: 0.6em;
+  cursor: pointer;
+}
+
+.tweet-list li .tweet-options i:last-child {
+  margin-right: 0;
+}
+
+.tweet-list li .tweet-username a:hover,
+.tweet-list li .tweet-content a:hover,
+.tweet-list li .tweet-options i:hover {
+  color: #4183c4;
+}
+
+/* Typography */
+body,
+h1,h2,h3, h4, h5, h6,
+li, p,
+textarea,
+.ui.button,
+.ui.menu  {
+  font-family: 'Dosis', Helvetica, Arial, sans-serif !important;
+  font-weight: 300;
+}
+
+.ui.form .field > label,
+.ui.menu .item {
+  font-weight: 300;
+}
+
+.ui.button {
+  font-weight: 400;
+}
+
+p,
+header .menu .item {
+  font-size: 1.4em;
+}
+
+header h1 a {
+  font-size: 1.2em;
+  font-weight: 500;
+}
+
+li.tweet-content,
+.ui.form .field > label,
+.ui.form textarea,
+.site-info p,
+form input {
+  font-size: 1.2em;
+}
+
+h1 {
+  margin-bottom: 1.0em;
+}
+
+h3.tweet-content,
+.menu h1 {
+  margin-bottom: 0;
+}
+
+.signup-form h1,
+.login-form h1 {
+  text-align: center;
+}
+
+li a {
+  text-decoration: none;
+}
+
+.actions .ui.button i {
+  color: rgba(0,0,0,0.4);
+}
+
+
+/* Override Semantic-ui styles */
+
+.ui.form .field:last-child {
+  margin-bottom: 2.0em;
+}
+
+.ui.secondary.pointing.menu {
+  margin-bottom: 0;
+}

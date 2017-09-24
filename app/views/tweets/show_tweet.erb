@@ -1,0 +1,36 @@
+<div id="main" class="wrapper">
+
+  <% if current_user.id != @tweet.user.id %>
+  <h1><%= @tweet.user.username %>'s tweet</h1>
+  <% else %>
+  <h1>My tweet</h1>
+  <% end %>
+
+  <div class="actions">
+    <!-- disable the buttons if user not tweet owner -->
+
+    <%# if current_user.id == @tweet.user.id %>
+
+    <!-- Add a tweet -->
+    <a class="ui button action add" href="/tweets/new"><i class="fa fa-plus" aria-hidden="true"></i></a>
+
+    <!-- Delete Tweet -->
+    <form action="/tweets/<%= @tweet.id %>/delete" method="post">
+      <input type="hidden" name="_method" value="delete" />
+      <button class="ui button action delete" type="submit" name="delete" value="Delete Tweet">
+        <i class="fa fa-trash-o" aria-hidden="true"></i>
+      </button>
+    </form>
+
+    <!-- Edit Tweet -->
+    <a class="ui button action edit" href="/tweets/<%= @tweet.id %>/edit"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+
+    <!-- Back to previous screen -->
+    <a class="ui button action back" href="javascript:history.back()"><i class="fa fa-reply" aria-hidden="true"></i></a>
+
+    <%# end %>
+  </div>
+
+  <h3 class="tweet-content"><%= @tweet.content %></h3>
+
+</div>
