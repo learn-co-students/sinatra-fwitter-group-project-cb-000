@@ -15,5 +15,9 @@ module Helpers
                 "hidden"
             end
         end
+
+        def eligible(tweet)
+            current_user == tweet.user
+        end
     end
 end
