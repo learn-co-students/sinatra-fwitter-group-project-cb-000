@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Fwitter - Create Tweet</title>
+    </head>
+    <body>
+        <h1>Create a Tweet</h1>
+        <form action="/tweets/new" method="post">
+            <textarea id="content" type="content" name="content"></textarea>
+            <br><br>
+            <input id="submit" type="submit" value="Create Tweet">
+        </form>
+
+        <h4 style="color:red;"><%= flash[:error] if flash.has?(:error) %></h4>
+    </body>
+</html>

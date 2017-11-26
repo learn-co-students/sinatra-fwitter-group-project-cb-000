@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title><%= @tweet.user.username %>'s Tweet</title>
+    </head>
+    <body>
+        <h2><%= @tweet.user.username %></h2>
+        <hr>
+        <h3><%= @tweet.content %></h3>
+
+        <form action="/tweets/<%= @tweet.id %>/delete" method="post">
+            <input id="hidden" type="hidden" name="_method" value="delete">
+            <input type="submit" value="Delete Tweet">
+        </form>
+        <form action="/tweets/<%= @tweet.id %>/edit">
+            <input type=<%= @form_type %> value="Edit Tweet">
+        </form>
+
+        <h4 style="color:red;"><%= flash[:error] if flash.has?(:error) %></h4>
+    </body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Fwitter - Signup</title>
+    </head>
+    <body>
+        <h1>Create an Account</h1>
+        <form action="/signup" method="post">
+            <label for="username">Username:</label>
+            <input id="username" type="text" name="username">
+            <br><br>
+            <label for="email">Email:</label>
+            <input id="email" type="text" name="email">
+            <br><br>
+            <label for="password">Password:</label>
+            <input id="password" type="password" name="password">
+            <br><br>
+            <input type="submit" value="Sign Up">
+        </form>
+
+        <h4 style="color:red;"><%= flash[:error] if flash.has?(:error) %></h4>
+    </body>
+</html>
