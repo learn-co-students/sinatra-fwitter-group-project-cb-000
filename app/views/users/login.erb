@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Fwitter - Login</title>
+    </head>
+    <body>
+        <h1>Login To Your Account</h1>
+        <form action="/login" method="post">
+            <label for="username">Username:</label>
+            <input id="username" type="text" name="username">
+            <br><br>
+            <label for="password">Password:</label>
+            <input id="password" type="password" name="password">
+            <br><br>
+            <input id="submit" type="submit" value="Log In">
+        </form>
+
+        <h4 style="color:red;"><%= flash[:error] if flash.has?(:error) %></h4>
+    </body>
+</html>

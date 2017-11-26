@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Fwitter - Edit Tweet</title>
+    </head>
+    <body>
+        <h1>Edit Tweet</h1>
+        <form action="/tweets/<%= @tweet.id %>/edit" method="post">
+            <input type="hidden" name="_method" value="patch">
+
+            <textarea id="content" type="content" name="content"><%= @tweet.content %></textarea>
+            <br><br>
+            <input id="submit" type="submit" value="Edit Tweet">
+        </form>
+
+        <h4 style="color:red;"><%= flash[:error] if flash.has?(:error) %></h4>
+    </body>
+</html>

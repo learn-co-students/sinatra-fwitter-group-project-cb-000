@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Fwitter</title>
+    </head>
+    <body>
+        <h1>Welcome,</h1>
+        <% @tweets.each do |tweet| %>
+            <% if tweet %>
+                <h4><%= tweet.user.username %></h4>
+                <p><%= tweet.content %></p>
+                <hr>
+            <% end %>
+        <% end %>
+    </body>
+</html>
