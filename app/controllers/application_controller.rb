@@ -14,9 +14,41 @@ class ApplicationController < Sinatra::Base
     erb :index
   end
 
+  get '/login' do
+   if session["user_id"]
+     redirect '/tweets'
+   end
+
+    erb :'users/login'
+  end
+
+  get '/tweets' do
+    erb :'/tweets/tweets'
+  end
+
+  get '/logout' do
+    if session["user_id"]
+      session.clear
+      redirect '/login'
+    else
+      redirect '/'
+    end
+  end
+
+  post '/login' do
+    @user = User.find_by(username: params["username"])
+
+    if @user && @user.password == params["password"]
+      session["user_id"] = @user.id
+      redirect '/tweets'
+    else
+      redirect '/login'
+    end
+  end
+
   get '/signup' do
     if session["user_id"]
-      redirect '/tweets/tweets'
+      redirect '/tweets'
     end
 
     erb :'users/create_user'
@@ -30,6 +62,6 @@ class ApplicationController < Sinatra::Base
     @user = User.create(params)
     session["user_id"] = @user.id
 
-    redirect 'tweets/tweets'
+    redirect 'tweets'
   end
 end
