@@ -1,1 +1,7 @@
-Welcome,
+<p>Welcome, to Fwitter</p>
+
+<ul>
+  <% @tweets.each do |tweet| %>
+    <li><%= tweet.content %></li>
+  <% end %>
+</ul>
