@@ -23,6 +23,12 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/tweets' do
+    if !session["user_id"]
+      redirect '/login'
+    end
+
+
+    @tweets = User.find(user_id: session["user_id"])
     erb :'/tweets/tweets'
   end
 
