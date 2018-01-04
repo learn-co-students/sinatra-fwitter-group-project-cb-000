@@ -112,7 +112,7 @@ class ApplicationController < Sinatra::Base
       redirect '/login'
     end
 
-    @user = User.find(session["user_id"])
+    @user = current_user
     @tweet = Tweet.find(params[:id])
 
     if @user && @user.id == @tweet.user_id
@@ -136,7 +136,7 @@ class ApplicationController < Sinatra::Base
   end
 
   delete '/tweets/:id/delete' do
-    @user = User.find(session["user_id"])
+    @user = current_user
     @tweet = Tweet.find(params[:id])
 
     if @user && @user.id == @tweet.user_id
