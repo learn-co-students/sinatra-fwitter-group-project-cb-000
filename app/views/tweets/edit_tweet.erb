@@ -1,0 +1,8 @@
+<p>You can edit your existing tweet here</p>
+<p>The current content is: <%= @tweet.content %></p>
+
+<form method="post" action="/tweets/<%= @tweet.id %>">
+  <input type="hidden" id="hidden" name="_method" value="patch">
+  <input type="text" name="content">
+  <input type="submit" value="submit">
+</form>
