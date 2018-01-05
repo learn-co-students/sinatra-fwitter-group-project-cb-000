@@ -21,6 +21,10 @@ class ApplicationController < Sinatra::Base
     def current_user
       User.find(session[:user_id])
     end
+
+    def has_required_fields
+      (params[:username] != "" && params[:email] != "" && params[:password] != "") ? true : false
+    end
   end
 
 
