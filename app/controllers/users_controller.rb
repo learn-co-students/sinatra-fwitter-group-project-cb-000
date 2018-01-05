@@ -10,7 +10,7 @@ class UsersController < ApplicationController
 
   post '/signup' do
     if has_required_fields
-      user = User.create(params[:user])
+      user = User.create(username: params[:username], email: params[:email], password: params[:password])
       session[:user_id] = user.id
       redirect "/tweets"
     else
