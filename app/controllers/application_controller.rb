@@ -25,6 +25,10 @@ class ApplicationController < Sinatra::Base
     def has_required_fields
       (params[:username] != "" && params[:email] != "" && params[:password] != "") ? true : false
     end
+
+    def redirect_to_login_page_if_not_logged_in
+      (redirect "/login") if !logged_in?
+    end
   end
 
 

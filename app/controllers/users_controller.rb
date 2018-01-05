@@ -10,8 +10,8 @@ class UsersController < ApplicationController
 
   post '/signup' do
     if has_required_fields
-      @user = User.create(params)
-      session[:user_id] = @user.id
+      user = User.create(params[:user])
+      session[:user_id] = user.id
       redirect "/tweets"
     else
       redirect "/signup"
@@ -45,6 +45,13 @@ class UsersController < ApplicationController
     else
       redirect "/"
     end
+  end
+
+  get '/users/:slug' do
+    user = User.find_by_slug(params[:slug])
+    @tweets = user.tweets
+
+    erb :'/users/show'
   end
 
 end
