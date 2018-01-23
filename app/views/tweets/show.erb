@@ -1,0 +1,21 @@
+<h1>Welcome, <%= @user.username %></h1>
+
+  <h3><%= @tweet.content %> by <%=@tweet.user.username %></h3>
+  <br><br>
+<% if @user.tweets.include?(@tweet) %>
+  <form action="/tweets/<%= @tweet.id %>/edit" method="GET">
+        <input type="submit" value="Edit Tweet"/>
+  </form><br><br>
+  <form action="/tweets/<%= @tweet.id %>/delete" method="POST">
+    <input type="hidden" name="_method" id="hidden" value="delete" />
+    <input type="submit" value="Delete Tweet" id="Delete Tweet"/>
+  </form>
+<% end %>
+<br><br>
+<form action="/tweets" method="GET">
+<input type="submit" value="Home"/>
+</form>
+<br><br>
+<form action="/logout" method="GET">
+<input type="submit" value="Logout"/>
+</form>

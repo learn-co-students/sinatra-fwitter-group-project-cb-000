@@ -1,0 +1,16 @@
+<h3><% if @message %>
+<h3><%= @message %></h3>
+<% end %>
+
+<form action="/tweets" method="POST">
+  <label>What would you like to tweet?<input type="text" name="content"/></label>
+  <br><br>
+<input type="submit" value="Tweet It" id="submit" />
+</form>
+
+<form action="/tweets" method="GET">
+<input type="submit" value="Home"/>
+</form>
+<form action="/logout" method="GET">
+<input type="submit" value="Logout"/>
+</form>
