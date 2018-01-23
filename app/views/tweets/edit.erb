@@ -1,0 +1,23 @@
+<h1>Welcome, <%= @user.username %></h1>
+<% if @message %>
+<h3><%= @message %></h3>
+<% end %>
+
+<h2>Edit the tweet below!</h2>
+<form action="/tweets/<%= @tweet.id %>" method="POST">
+  <input type="hidden" name="_method" id="hidden" value="patch" />
+  <input type="text" name="content" value="<%= @tweet.content %>"/>
+<input type="submit" value="Edit Tweet" id ="submit"/>
+</form>
+<h2>or </h2>
+<form action="/tweets/<%= @tweet.id %>/delete" method="POST">
+  <input type="hidden" name="_method" id="hidden" value="delete" />
+  <input type="submit" value="Delete Tweet" id="Delete Tweet"/>
+</form>
+
+<form action="/tweets" method="GET">
+<input type="submit" value="Home"/>
+</form>
+<form action="/logout" method="GET">
+<input type="submit" value="Logout"/>
+</form>

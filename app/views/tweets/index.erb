@@ -1,1 +1,16 @@
-Tweets Here
+<h1>Welcome, <%=@user.username%></h1>
+<ul>
+<% @tweets.each do |tweet| %>
+  <li><a href="/tweets/<%= tweet.id %>"><%= tweet.content %></a> tweeted by <%= tweet.user.username %>
+  <br></li>
+<%end%>
+</ul>
+<form action="/users/<%=@user.slug%>" method="GET">
+<input type="submit" value="My Tweets"/>
+</form>
+<form action="/tweets/new" method="GET">
+<input type="submit" value="New Tweet"/>
+</form>
+<form action="/logout" method="GET">
+<input type="submit" value="Logout"/>
+</form>
