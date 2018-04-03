@@ -33,6 +33,23 @@ class ApplicationController < Sinatra::Base
    end
   end
 
+  get '/logout' do
+    # erb :login
+
+    if logged_in?
+    #  erb :new
+    session.clear
+
+   redirect '/login'
+
+   else
+    #  erb :login
+     # erb :error
+     redirect '/tweets'
+
+   end
+  end
+
   post '/login' do
     user = User.find_by(:username => params[:username])
 
@@ -48,7 +65,20 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/tweets' do
-    erb :tweets
+    # erb :tweets
+
+    if logged_in?
+    #  erb :new
+    # session.clear
+
+   erb :tweets
+
+   else
+    #  erb :login
+     # erb :error
+     redirect '/login'
+
+   end
   end
 
   get '/signup' do
