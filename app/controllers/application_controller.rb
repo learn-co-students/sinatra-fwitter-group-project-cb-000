@@ -67,6 +67,9 @@ class ApplicationController < Sinatra::Base
   get '/tweets' do
     # erb :tweets
 
+    @tweets = Tweet.all
+
+
     if logged_in?
     #  erb :new
     # session.clear

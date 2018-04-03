@@ -1,3 +1,8 @@
 <% if flash.has?(:notice) %>
 	  <%= flash[:notice] %>
 	<% end %>
+
+
+  <%@tweets.each do |tweet|%>
+  <%=tweet.content%>
+<%end%>
