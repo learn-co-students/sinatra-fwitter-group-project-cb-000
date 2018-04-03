@@ -1,7 +1,11 @@
 require './config/environment'
 
+require 'sinatra/base'
+require 'rack-flash'
 class ApplicationController < Sinatra::Base
   enable :sessions
+  use Rack::Flash
+
 
   configure do
     set :public_folder, 'public'
@@ -16,6 +20,20 @@ class ApplicationController < Sinatra::Base
 
   get '/login' do
     erb :login
+  end
+
+  post '/login' do
+    user = User.find_by(:username => params[:username])
+
+    if user
+        flash[:notice] = "Welcome, #{user.username}"
+        session[:user_id] = user.id
+        redirect '/tweets'
+    else
+
+      redirect "/login"
+    end
+
   end
 
   get '/tweets' do
