@@ -112,6 +112,22 @@ class ApplicationController < Sinatra::Base
     # redirect '/tweets'
   end
 
+  get '/users/:slug' do
+  # @songs = Song.all
+  # this is tested to work..
+  # p Song.all
+
+  # class method.. spelt right, given an arg. arg has contents..
+  # but doesnt return anything..
+  # find by something else?
+
+  # could cause issues
+  @user = User.find_by(username: params[:slug])
+  # binding.pry
+
+  erb :'/users/show'
+end
+
   helpers do
     def logged_in?
       !!session[:user_id]
