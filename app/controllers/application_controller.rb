@@ -42,7 +42,7 @@ class ApplicationController < Sinatra::Base
 
    redirect '/login'
 
-# this maybe could be deleted
+# this maybe could be deleted;
    else
     #  erb :login
      # erb :error
@@ -137,9 +137,15 @@ class ApplicationController < Sinatra::Base
     # @tweet = Tweet.find(params[:id])
 
     @tweet.destroy
-    redirect '/tweets'
+
+  else
+    flash[:notice] = "not urs to delete"
+
 
   end
+
+  redirect '/tweets'
+
   end
 
   post '/tweets/:id' do
