@@ -47,7 +47,7 @@ class ApplicationController < Sinatra::Base
     #  erb :login
      # erb :error
      redirect '/'
-   #
+  #  #
    end
   end
 
@@ -149,8 +149,8 @@ class ApplicationController < Sinatra::Base
   end
 
   post '/tweets/:id' do
-    if logged_in? and current_user
-      @tweet = Tweet.find(params[:id])
+    @tweet = Tweet.find(params[:id])
+    if logged_in? and current_user.id ==@tweet.user_id
 
       @tweet.update(content: params[:content])
 
@@ -161,6 +161,8 @@ class ApplicationController < Sinatra::Base
           redirect "/tweets/#{@tweet.id}/edit"
       end
 
+    else
+      redirect "/tweets/#{@tweet.id}"
     end
   end
 
