@@ -129,7 +129,15 @@ class ApplicationController < Sinatra::Base
   post '/tweets/:id' do
     if logged_in? and current_user
       @tweet = Tweet.find(params[:id])
+
       @tweet.update(content: params[:content])
+
+      if @tweet.save
+          # could i just do '/tweets/:id' here ?
+          redirect "/tweets/#{@tweet.id}"
+      else
+          redirect "/tweets/#{@tweet.id}/edit"
+      end
 
     end
   end
