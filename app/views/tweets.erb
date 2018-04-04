@@ -5,4 +5,6 @@
 
   <%@tweets.each do |tweet|%>
   <%=tweet.content%>
+  <a href="/tweets/<%=tweet.id%>">See this one</a>
+
 <%end%>

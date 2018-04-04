@@ -42,6 +42,7 @@ class ApplicationController < Sinatra::Base
 
    redirect '/login'
 
+# this maybe could be deleted
    else
     #  erb :login
      # erb :error
