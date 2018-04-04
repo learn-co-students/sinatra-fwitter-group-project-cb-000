@@ -64,6 +64,32 @@ class ApplicationController < Sinatra::Base
 
   end
 
+  get '/tweets/new' do
+    if logged_in?
+
+      erb :new
+
+    else
+      redirect '/login'
+
+  end
+  end
+
+  post '/tweets' do
+    @tweet = Tweet.create(content: params[:content], user_id: session[:user_id])
+    # binding.pry
+
+    if @tweet.save
+      # flash[:notice] = "great stuff"
+      redirect "/tweets"
+    else
+
+      # flash[:notice] = "cant put in a blank one"
+
+      redirect "/tweets/new"
+    end
+  end
+
   get '/tweets' do
     # erb :tweets
 
@@ -80,8 +106,47 @@ class ApplicationController < Sinatra::Base
     #  erb :login
      # erb :error
      redirect '/login'
-
    end
+  end
+
+# seems fine to me
+# never hits this route.
+# dumb
+  get '/tweets/:id/edit' do
+
+    # binding.pry
+    if logged_in?
+
+    @tweet = Tweet.find(params[:id])
+    erb :'edit_tweet'
+  else
+   #  erb :login
+    # erb :error
+    redirect '/login'
+  end
+  end
+
+  post '/tweets/:id' do
+    if logged_in? and current_user
+      @tweet = Tweet.find(params[:id])
+      @tweet.update(content: params[:content])
+
+    end
+  end
+
+  get '/tweets/:id' do
+
+    if logged_in?
+
+    @tweet = Tweet.find(params[:id])
+    erb :'show_tweet'
+  else
+   #  erb :login
+    # erb :error
+    redirect '/login'
+  end
+
+
   end
 
   get '/signup' do
@@ -136,9 +201,9 @@ end
       !!session[:user_id]
     end
 
-    # def current_user
-    #   User.find(session[:user_id])
-    # end
+    def current_user
+      User.find(session[:user_id])
+    end
   end
 
 end
