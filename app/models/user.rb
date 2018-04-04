@@ -12,4 +12,14 @@ class User < ActiveRecord::Base
    # not sure why self.name is better than @name here
    self.username.downcase.gsub(/\s/, '-')
  end
+
+ def self.find_by_slug(slug)
+    # reverse the slug to name?
+    slugToName = slug.gsub('-', ' ')
+    # slug = slug.gsub(/\w+/, &:capitalize)
+    x = User.arel_table
+    User.where(x[:username].matches("%#{slugToName}%")).first
+    # binding.pry
+
+  end
 end
