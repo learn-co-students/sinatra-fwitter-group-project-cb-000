@@ -1,0 +1,8 @@
+<h2>Welcome, <%= @user.username %>!</h2>
+
+<h4><%= @user.username %>'s tweets:</h4>
+<ul style="list-style-type: none;">
+  <% @user.tweets.each do |tweet| %>
+    <li>#<%= tweet.id %>: <%= tweet.content %></li>
+  <% end %>
+</ul>
