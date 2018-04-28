@@ -1,0 +1,8 @@
+<h4><%= current_user.username %>'s</h4>
+<h5>New tweet:</h5>
+<textarea rows="6" cols="50" name="content" form="new_form" placeholder="Enter tweet here..."></textarea>
+
+<form id="new_form" method=post action="/<%= @user.slug %>/tweets">
+
+  <input type="submit" id="submit" value="Create Tweet">
+</form>

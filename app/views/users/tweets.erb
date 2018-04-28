@@ -1,0 +1,21 @@
+<% if !logged_in? %>
+  <div>
+    <h2>Welcome, Guest!</h2>
+
+    <h4><%= @user.username %>'s tweets:</h4>
+    <ul style="list-style-type: none;">
+      <% @user.tweets.each do |tweet| %>
+        <li><a href="/<%= @user.slug %>/tweets/<%= tweet.id %>"><%= tweet.content %></a></li><br>
+      <% end %>
+    </ul>
+  </div>
+<% else %>
+  <div>
+    <h3><%= @user.username %>'s tweets:</h3>
+    <ul style="list-style-type: none;">
+      <% @user.tweets.each do |tweet| %>
+        <li><a href="/<%= @user.slug %>/tweets/<%= tweet.id %>"><%= tweet.content %></a></li><br>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
