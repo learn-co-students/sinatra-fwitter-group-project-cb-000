@@ -1,15 +1,19 @@
 <!doctype html>
 <html>
+  <% if flash.has?(:message) %>
+    <%= flash[:message] %>
+  <% end %>
   <head>
     <title>Fwitter</title>
     <style>
       .wrapper {margin: auto; width: 70%; height: 85%; background-color: dodgerblue; margin-top: 60px;}
-      a {font-size: 20px; font-weight: bold; color: yellow;}
+      a {font-size: 20px; font-weight: bold; color: yellow; text-decoration: none;}
+      a:hover {color: skyblue;}
       .navbar {overflow: hidden; background-color: midnightblue; position: fixed; top: 0; right: 14%;}
       .navbar a {display: inline-block; color: #f2f2f2; text-align: center; padding: 14px 16px; text-decoration: none; font-size: 17px; border-style: none;}
       .navbar a:hover {background: hotpink; color: black;}
       .navbar a:visited {}
-      #left{border-style: solid; border-width: 1.5px; float: left; width: 72%; overflow: auto; background: #404040; height: 100%; padding: 1%;}
+      #left{border-style: solid; border-width: 1.5px; float: left; width: 72%; overflow: auto; background: #404040; height: 100%; padding: 1%; text-align: center;}
       #right{border-style: solid; border-width: 1.5px; float: right; width: 22%; overflow: auto; background: #404040; height: 100%; padding: 1%; text-align: center;}
       #logo {text-align: center;}
       h1 {color: coral;}

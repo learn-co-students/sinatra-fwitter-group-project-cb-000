@@ -1,6 +1,8 @@
 require './config/environment'
+require 'rack-flash'
 
 class ApplicationController < Sinatra::Base
+  use Rack::Flash
 
   configure do
     set :public_folder, 'public'
@@ -21,13 +23,13 @@ class ApplicationController < Sinatra::Base
     if logged_in?
       redirect "/#{current_user.slug}/tweets"
     else
-      erb :signup
+      erb :'users/signup'
     end
   end
 
   post '/signup' do
     if params[:username].empty? || params[:email].empty? || params[:password].empty?
-      redirect "/error"
+      redirect "/login_error"
     else
       @user = User.new(username: params[:username], email: params[:email], password: params[:password])
       if @user.save
@@ -43,20 +45,19 @@ class ApplicationController < Sinatra::Base
 
   get '/login' do
     if logged_in?
-      redirect #{current_user.slug}weets"
+      redirect "#{current_user.slug}weets"
     else
-      erb :login
+      erb :'users/login'
     end
   end
 
   post '/login' do
-    puts params
     @user = User.find_by(username: params[:username])
     if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
       redirect "/#{current_user.slug}/tweets"
     else
-      redirect 'error'
+      redirect '/login_error'
     end
   end
 
@@ -70,6 +71,20 @@ class ApplicationController < Sinatra::Base
     redirect '/'
   end
 
+  # Errors
+
+  get '/error' do
+    erb :'errors/error'
+  end
+
+  get '/signup_error' do
+    erb :'errors/signup_error'
+  end
+
+  get '/login_error' do
+    erb :'errors/login_error'
+  end
+
   # Users
 
   get '/:slug' do
@@ -80,37 +95,65 @@ class ApplicationController < Sinatra::Base
 
   get '/:slug/tweets' do
     @user = User.find_by_slug(params[:slug])
-    erb :tweets
+    erb :'users/tweets'
   end
 
   # Tweets
 
   get '/:slug/tweets/new' do
     if logged_in?
-      erb :new
+      @user = User.find_by_slug(params[:slug])
+      erb :'tweets/new'
     else
-      redirect '/login'
+      redirect '/error'
+    end
+  end
+
+  post '/:slug/tweets' do
+    @user = User.find_by_slug(params[:slug])
+    if !params[:content].empty?
+      @user.tweets << Tweet.create(content: params[:content])
+      @user.save
+      redirect "/#{current_user.slug}/tweets"
+    else
+      flash[:message] = "Tweets must contain at least one character."
+
+      redirect "/#{current_user.slug}/tweets/new"
     end
   end
 
   get '/:slug/tweets/:id' do
     @user = User.find_by_slug(params[:slug])
     @tweet = Tweet.find(params[:id])
-    erb :show
-  end\
+    erb :'tweets/show'
+  end
 
   get '/:slug/tweets/:id/edit' do
-    if current_user
-      erb :edit
+    @user = User.find_by_slug(params[:slug])
+    @tweet = Tweet.find(params[:id])
+    if @user.id == session[:user_id]
+      erb :'tweets/edit'
     else
       redirect "/error"
     end
   end
 
-  # Errors
+  patch '/:slug/tweets/:id' do
+    @user = User.find_by_slug(params[:slug])
+    @tweet = Tweet.find(params[:id])
+    @tweet.update(content: params[:content])
+    redirect "/#{current_user.slug}/tweets/#{@tweet.id}"
+  end
 
-  get '/error' do
-    erb :errors
+  delete '/:slug/tweets/:id/delete' do
+    @user = User.find_by_slug(params[:slug])
+    if @user.id == session[:user_id]
+      @tweet = Tweet.find(params[:id])
+      @tweet.destroy
+      redirect "/#{current_user.slug}/tweets"
+    else
+      redirect "/error"
+    end
   end
 
   # Helpers
