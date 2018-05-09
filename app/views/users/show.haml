@@ -1,0 +1,13 @@
+%h3 tweeting! tweet tweet tweet
+- @tweets.each do |tweet|
+  - if tweet.user_id == session[:user_id]
+    %p
+      %a{ href: "/tweets/#{tweet.id}"}
+        = tweet.content
+
+%h3 Other Actions
+%p 
+  %a(href= "/tweets/new") Create a new tweet
+%p
+  %a(href="/") Home
+
