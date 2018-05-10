@@ -10,6 +10,7 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/' do 
+    if session then session.clear end
     haml :index
   end
 
