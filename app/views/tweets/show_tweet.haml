@@ -1,0 +1,12 @@
+%html
+  %head
+    %title Tweet
+  %body
+    = @tweet.content
+    - if @tweet.user_id == session[:user_id]
+      %p
+        %a(href= "/tweets/#{@tweet.id}/edit") Edit Tweet
+      %form(action='/tweets/#{@tweet.id}' method='post')
+        %input(type='hidden' name='tweet_id' value="#{@tweet.id}")
+        %input(type='hidden' name='_method' value="delete")
+        %input(type='submit' value='Delete Tweet')

@@ -1,0 +1,20 @@
+%html
+  %head
+    %title Fwitter Home Page
+  %body
+    - if logged_in?
+      %p 
+        Welcome, #{User.find(session[:user_id]).username}
+      %p 
+        %a(href= "/tweets/new") Create a new tweet
+      %p
+        %a(href= "/logout") Log out
+    - else
+      %p
+        Welcome to Fwitter
+      %p 
+        %a(href= "/login") Login
+      %p 
+        %a(href= "/signup") Create Account
+
+

@@ -1,0 +1,13 @@
+Welcome, user.  
+%h3 All Tweets
+- @tweets.each do |tweet|
+  %p
+    %a{ href: "/tweets/#{tweet.id}"}
+      = tweet.content
+
+%h3 Other Actions
+%p 
+  %a(href= "/tweets/new") Create a new tweet
+%p
+  %a(href="/") Home
+
