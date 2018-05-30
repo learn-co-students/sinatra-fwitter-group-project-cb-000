@@ -1,10 +1,6 @@
 class UserController < Sinatra::Base
-  get "/" do
-    erb :index
-  end
-
   get "/signup" do
-    erb :create_user       #filename  spec'd in the lab, otherwise would have called it :signup
+    erb :'users/create_user'       #filename  spec'd in the lab, otherwise would have called it :signup
   end
 
   post "/signup" do
@@ -25,7 +21,7 @@ class UserController < Sinatra::Base
 
 
   get "/login" do
-    erb :login
+    erb :'/users/login'
   end
 
   post "/login" do
@@ -40,14 +36,14 @@ class UserController < Sinatra::Base
 
   get "/success" do
     if logged_in?
-      erb :account
+      erb :'users/show'
     else
       redirect "/login"
     end
   end
 
   get "/failure" do
-    erb :failure
+    puts "There was a problem, please <a href='/'>try again</a>"
   end
 
   get "/logout" do
