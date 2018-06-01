@@ -1,54 +1,52 @@
-class UserController < Sinatra::Base
-  get "/signup" do
-    erb :'users/create_user'       #filename  spec'd in the lab, otherwise would have called it :signup
-  end
-
-  post "/signup" do
-    user = User.new(:username => params[:username], :password => params[:password])
-
-    if params[:username] != "" && params[:password] != "" && user.save
-        session[:user_id] = user.id
-        redirect "/login"
+class UserController < ApplicationController
+  get '/signup' do
+    if !logged_in?
+      erb :'users/create_user'
     else
-        redirect "/failure"
+      redirect to '/tweets'
     end
   end
 
-  get '/account' do
-    @user = User.find(session[:user_id])
-    erb :account
+  post '/signup' do
+    if params[:username].empty? || params[:email].empty? || params[:password].empty? #Remember empty strings are TRUE, can't use '!'
+      redirect to '/signup'
+    else
+      @user = User.new(:username => params[:username], :email => params[:email], :password => params[:password])
+      @user.save
+      session[:user_id] = @user.id
+      redirect to '/tweets'
+    end
   end
 
-
-  get "/login" do
-    erb :'/users/login'
+  get '/login' do
+    if !logged_in?
+      erb :'users/login'
+    else
+      redirect '/tweets'
+    end
   end
 
-  post "/login" do
+  post '/login' do
     user = User.find_by(:username => params[:username])
-    if params[:username] != "" && params[:password] != "" && user.authenticate(params[:password])
+    if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      redirect "/account"
+      redirect "/tweets"
     else
-      redirect "/failure"
+      redirect to '/signup'
     end
   end
 
-  get "/success" do
+  get '/users/:slug' do
+    @user = User.find_by_slug(params[:slug])
+    erb :'users/show'
+  end
+
+  get '/logout' do
     if logged_in?
-      erb :'users/show'
+      session.clear
+      redirect to '/login'
     else
-      redirect "/login"
+      redirect to '/'
     end
   end
-
-  get "/failure" do
-    puts "There was a problem, please <a href='/'>try again</a>"
-  end
-
-  get "/logout" do
-    session.clear
-    redirect "/"
-  end
-
 end

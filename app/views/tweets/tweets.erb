@@ -1,6 +1,6 @@
-<h3> Tweets: </h3>
+<h3> Welcome, <a href="/tweets/new">Tweet</a> or view Tweets: </h3>
 <ul>
-<% Tweet.all..each do |tweet| %>
+<% Tweet.all.each do |tweet| %>
   <div>
       <li><%= tweet.user.username %> tweets: <%= tweet.content %>
       </li>

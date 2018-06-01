@@ -1,4 +1,4 @@
-class TweetController < Sinatra::Base
+class TweetController < ApplicationController
 
   get '/tweets' do
     if logged_in?
@@ -18,7 +18,7 @@ class TweetController < Sinatra::Base
   end
 
   post '/tweets' do
-    if !params[:content]
+    if params[:content].empty?
       redirect to "/tweets/new"
     else
       @tweet = current_user.tweets.create(content: params[:content])
@@ -48,8 +48,8 @@ class TweetController < Sinatra::Base
     end
   end
 
-  patch '/tweets/:id' do
-    if !params[:content]
+  post '/tweets/:id' do
+    if params[:content].empty?
       redirect to "/tweets/#{params[:id]}/edit"
     else
       @tweet = Tweet.find_by_id(params[:id])
