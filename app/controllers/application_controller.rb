@@ -7,22 +7,22 @@ class ApplicationController < Sinatra::Base
     set :views, 'app/views'
   end
 
-  get '/' do #homepage
-    erb :'application/root'
+  enable :sessions
+  set :session_secret, "secret"
+
+  get '/' do
+    erb :index
   end
 
-  get '/tweets' do
-    @tweets = Tweet.all
-    erb :'tweets/index'
+  get '/logout' do
+    session.clear
+    redirect to "/"
   end
 
-  get '/tweets/new' do
-    erb :'tweets/new'
-  end
-
-  get '/tweets/:id' do
-    @tweet = Tweet.find(params[:id])
-    erb :'tweets/show'
+  helpers do
+    def sessionAuth(session)
+      User.find_by(:password_digest => session[:digest])
+    end
   end
 
 end
