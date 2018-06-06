@@ -1,0 +1,14 @@
+<h1>Create A New User</h1>
+
+<% if flash.has?(:message) %>
+  <hr>
+  <p><strong><%=flash[:message]%></strong></p>
+  <hr>
+<% end %>
+
+<form action="/signup" method="post">
+  Username: <input id="user_username" type="text" name="user[username]" required>
+  Email: <input id="user_email" type="text" name="user[email]" required>
+  Password: <input id="user_password" type="password" name="user[password]" required>
+  <input type="submit" value="Sign Up">
+</form>
