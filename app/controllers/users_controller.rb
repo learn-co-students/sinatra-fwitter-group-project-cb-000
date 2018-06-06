@@ -29,12 +29,13 @@ class UsersController < ApplicationController
   end
 
   post '/login' do
-    @user = User.find_by(params[:user]).authenticate(params[:user_password])
+    @user = User.find_by(params[:user].except(:password)).authenticate(params[:user][:password])
     if @user
       session[:digest] = @user.password_digest
       redirect to '/home'
     else
-      redirect to '/'
+      flash[:message] = "Your username or password was incorrect please try again."
+      redirect to '/login'
     end
     session[:digest]
   end
