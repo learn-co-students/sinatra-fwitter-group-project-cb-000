@@ -1,0 +1,9 @@
+<h1>Welcome, <strong><%=currentuser.name%></strong>!</h1>
+<h3>Tweets</h3>
+
+<% currentuser.tweets.each do |tweet| %>
+  <p>
+    <%=tweet.content%>
+  </p>
+  <hr>
+<% end %>
