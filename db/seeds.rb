@@ -1,3 +1,6 @@
+User.destroy_all
+Tweet.destroy_all
+
 astro = User.create(username: "Astro", email: "astro@example.com", password: "astropass")
 astro.tweets << Tweet.create(content: "Astro tweet one.")
 astro.tweets << Tweet.create(content: "Astro tweet two.")
