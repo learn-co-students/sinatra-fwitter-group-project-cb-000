@@ -14,7 +14,7 @@ class ApplicationController < Sinatra::Base
 
   helpers do
     def current_user
-      User.find_by(:password_digest = session[:digest])
+      User.find_by(:password_digest => session[:digest])
     end
 
     def logged_in?
