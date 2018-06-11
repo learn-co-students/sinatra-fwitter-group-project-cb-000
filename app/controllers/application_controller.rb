@@ -12,6 +12,19 @@ class ApplicationController < Sinatra::Base
     set :views, 'app/views'
   end
 
+  get '/' do
+    erb :index
+  end
+
+  get '/logout' do
+    if logged_in?
+      session.destroy
+      redirect to '/login'
+    else
+      redirect to '/'
+    end
+  end
+
   helpers do
     def current_user
       User.find_by(:password_digest => session[:digest])
