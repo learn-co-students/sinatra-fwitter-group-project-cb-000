@@ -30,7 +30,7 @@ class ApplicationController < Sinatra::Base
       User.find_by(:password_digest => session[:digest])
     end
 
-    def logged_in?(session)
+    def logged_in?
       session.key?(:digest)
     end
   end

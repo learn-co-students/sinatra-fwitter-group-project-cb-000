@@ -2,17 +2,21 @@ class UsersController < ApplicationController
 
   get '/users/:slug' do
     @user = User.find_by_slug(params[:slug])
-    erb :'tweets/show'
+    if !@user
+      flash[:m] = "The user #{params[:slug].split("-").map{|i| i.capitalize}.join(" ")} does not exist"
+      redirect to "/"
+    end
+    erb :'users/show'
   end
 
   get '/signup' do
     redirect to '/tweets' if logged_in?
-    erb :'tweets/create_user'
+    erb :'users/create_user'
   end
 
   get '/login' do
     redirect to '/tweets' if logged_in?
-    erb :'tweets/login'
+    erb :'users/login'
   end
 
 

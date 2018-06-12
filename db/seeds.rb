@@ -15,18 +15,23 @@ tweets = [
   "I want a lady in the streets and a lady in the sheets and 2 ladies flanking the east tower. Hold for my signal. We're gonna get that bastard",
   "I always see homeless people walking around with cups of change. I bet they could afford a house if they werent drinking money all the time."
 ]
-users = ["jughead", "betty", "veronica", "archie", "cheryl", "javier"]
+
+users = ["Jughead Jones", "Betty Cooper", "Veronica Lodge", "Archie Andrews", "Cheryl Blossom", "Josie McCoy"]
 
 # Accepts a array of user strings, tweet strings, and relates x int of tweets to each user
-def seed(tweets, users, tweets_per_user)
+def seed(tweets, users, x)
+  return "Not enough tweets for #{x} tweets per user." if tweets.length / x < users.length
 
   tweets.each do |tweet|
     Tweet.create(:content => tweet)
   end
 
+  all_tweets = Tweet.all.shuffle
+
   users.each do |user|
-    inst = User.create(username: user, email: "#{user}@mail.com", password: "#{user}@pass.com")
-    tweets_per_user.times{inst.tweets << Tweet.all.shuffle.first}
+    first_name_d = user.split(" ")[0].downcase
+    user_inst = User.create(username: user, email: "#{first_name_d}@mail.com", password: "#{first_name_d}pass")
+    x.times{user_inst.tweets << all_tweets.pop}
   end
 
   p "Created #{Tweet.count} Tweets and #{User.count} Users."
