@@ -1,24 +1,18 @@
-class UsersController < Sinatra::Base
-
-  configure do
-    set :public_folder, 'public'
-    set :views, 'app/views/users'
-  end
-
+class UsersController < ApplicationController
 
   get '/users/:slug' do
     @user = User.find_by_slug(params[:slug])
-    erb :show
+    erb :'tweets/show'
   end
 
   get '/signup' do
     redirect to '/tweets' if logged_in?
-    erb :create_user
+    erb :'tweets/create_user'
   end
 
   get '/login' do
     redirect to '/tweets' if logged_in?
-    erb :login
+    erb :'tweets/login'
   end
 
 

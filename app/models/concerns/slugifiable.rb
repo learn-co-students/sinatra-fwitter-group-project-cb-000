@@ -6,7 +6,7 @@ module Slugifiable
   end
   module ClassMethods
     def find_by_slug(slug)
-      self.find_by(:slug => slug)
+      self.all.find{|obj| obj.slug == slug}
     end
   end
 end

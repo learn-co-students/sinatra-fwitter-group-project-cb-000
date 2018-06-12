@@ -1,4 +1,4 @@
-class TweetsController < Sinatra::Base
+class TweetsController < ApplicationController
 
   configure do
     set :public_folder, 'public'
