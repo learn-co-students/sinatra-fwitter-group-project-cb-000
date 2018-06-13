@@ -21,6 +21,9 @@ class UsersController < ApplicationController
 
 
   post '/signup' do
+    if ![:username, :email, :password].all?{|s| params.key?(s)} || params.any?{|k,v| v == ""}
+      redirect to "/signup" # params = {username: "alex", password: "", email: "alex@example.org"}
+    end
     user = User.create(params)
     session[:digest] = user.password_digest
     redirect to "/tweets"
