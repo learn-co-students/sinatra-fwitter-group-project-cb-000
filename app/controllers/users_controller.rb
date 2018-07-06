@@ -23,7 +23,7 @@ class UsersController < ApplicationController
   # POST - /login - find the user by username and check that the password matches up. Fill in the session data
   post '/login' do
     if params[:username].empty? || params[:password].empty?
-      flash[:message] = "Username and password must cannot be left blank."
+      flash[:message] = "Username and password cannot be left blank."
       erb :'/users/login'
     else
       user = User.find_by(username: params[:username])
