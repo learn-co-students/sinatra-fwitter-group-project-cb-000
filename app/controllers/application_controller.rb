@@ -20,16 +20,14 @@ class ApplicationController < Sinatra::Base
   end
 
   post '/signup' do
-    # params.each do |key, value|
-    #   redirect '/signup' if value.empty?
-    # end
-
     params.each do |key, value|
-      value.empty? ? (redirect '/signup') : (key = value)
+      redirect '/signup' if value.empty?
     end
 
-    binding.pry
-    erb :'/twitter/index'
+    user = User.create(username: params[:username], email: params[:email], password: params[:password])
+
+    erb :'/twitter/tweets'
+
   end
 
 
