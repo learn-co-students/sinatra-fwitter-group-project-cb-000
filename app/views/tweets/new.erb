@@ -1,0 +1,15 @@
+<h2>Create a new Tweet</h2>
+
+  <% if @error_message %>
+    <p><%= @error_message %></p>
+  <% end %>
+
+  <form method="POST" action="/tweets">
+    <p>
+      <label for="content">Content:</label>
+      <input type="text" name="content" id="content">
+    </p>
+    <p>
+      <input type="submit" id="submit" value="submit">
+    </p>
+  </form>
