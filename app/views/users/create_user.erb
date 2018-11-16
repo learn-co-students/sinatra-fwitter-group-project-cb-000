@@ -1,0 +1,23 @@
+<h2>Sign up below</h2>
+
+  <% if @error_message %>
+    <p><%= @error_message %></p>
+  <% end %>
+
+  <form method="POST" action="/signup">
+    <p>
+      <label for="user_name">Username:</label>
+      <input type="text" name="user[username]" id="username">
+    </p>
+    <p>
+      <label for="email">Email:</label>
+      <input type="text" name="user[email]" id="email">
+    </p>
+    <p>
+      <label for="password">Password:</label>
+      <input type="text" name="user[password]" id="password">
+    </p>
+    <p>
+      <input type="submit" value="Submit">
+    </p>
+  </form>
