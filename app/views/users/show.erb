@@ -1,0 +1,10 @@
+<h3> Look at this user </h3>
+<% if @user != nil %>
+  Name: <%= @user.username %> <br>
+  <ul>
+  <% @user.tweets.each do |tweet| %>
+    <li> <%= tweet.content %> </l1>
+  <% end %>
+<% else %>
+ <h2> User not found </h2>
+<% end %>

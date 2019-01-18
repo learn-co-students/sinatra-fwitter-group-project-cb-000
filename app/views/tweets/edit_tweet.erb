@@ -1,0 +1,21 @@
+<h1> Edit A Tweet </h1>
+<% if Helpers.is_logged_in?(session) && @tweet != nil && @tweet.user_id == session[:user_id] %>
+  <%= @error %>
+  Current tweet content:
+  <p> <%= @tweet.content %> </p>
+  <br><br>
+  new tweet content:
+  <form action= <%= "/tweets/#{@tweet.id}" %> method="post">
+    <input type="text" name="content" id="content" ><br>
+    <input type="submit" name="edit_tweet" id="submit">
+  </form>
+
+
+
+<% elsif  !Helpers.is_logged_in?(session) %>
+    <h3> You Must Be Logged in to View Tweets </h3>
+<% elsif @tweet == nil %>
+    <h3> Tweet not found </h3>
+<% else %>
+    <h3> This is not your tweet </h3>
+<% end %>

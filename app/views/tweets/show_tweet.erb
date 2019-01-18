@@ -1,0 +1,18 @@
+<h1> View A Tweet </h1>
+<% if Helpers.is_logged_in?(session) && @tweet != nil %>
+    <p>
+    <%=  @tweet.content %>
+      <br>
+      tweeted by: <%= User.find_by(id: @tweet.user_id).username %>
+    </p>
+<% elsif  !Helpers.is_logged_in?(session) %>
+    <h1> You Must Be Logged in to View Tweets </h1>
+<% else %>
+    <h1> Tweet not found </h1>
+<% end %>
+<% if Helpers.is_logged_in?(session) && @tweet != nil && @tweet.user_id == session[:user_id] %>
+  <form action= <%= "#{@tweet.id}/delete" %> method="post" >
+    Delete this tweet
+    <input type="submit" name="Delete Tweet" id="Delete Tweet">
+  </form>
+<% end %>

@@ -1,0 +1,13 @@
+<h1> View Tweets </h1>
+<% if Helpers.is_logged_in?(session) %>
+<h2> Welcome. Welcome, Welcome! </h2>
+  <% @tweets.each do |tweet| %>
+    <p>
+    <%=  tweet.content %>
+      <br>
+      tweeted by: <%= User.find_by(id: tweet.user_id).username %>
+    </p>
+  <% end %>
+<% else %>
+    <h1> You Must Be Logged in to View Tweets </h1>
+<% end %>

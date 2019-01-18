@@ -1,0 +1,15 @@
+<h1> Welcome to Fwitter </h1>
+<% if Helpers.is_logged_in?(session) %>
+  <ul>
+  <li>  <a href='/tweets' >See tweets</a>   </li>
+  <li>  <a href='/logout' >Logout</a>   </li>
+  </ul>
+<% else %>
+  <a href="/login" >
+    Log In
+  </a>
+  <br>
+  <a href="/signup"  >
+    Sign up for free
+  </a>
+<% end %>
