@@ -17,7 +17,7 @@ class ApplicationController < Sinatra::Base
       @tweets = Tweet.all
       erb :'tweets/tweets'
     else
-      erb :'/users/login'
+      redirect '/users/login'
     end
   end
 
