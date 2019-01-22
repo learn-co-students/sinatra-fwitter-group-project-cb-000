@@ -12,13 +12,35 @@ class ApplicationController < Sinatra::Base
 
   get '/tweets' do
     # binding.pry
-    @user = User.find(session[:user_id])
-    erb :'/tweets/tweets'
+    if(session[:user_id] != nil)
+      @user = User.find(session[:user_id])
+      erb :'/tweets/tweets'
+    else
+      erb :'/users/login'
+    end
   end
 
   get '/' do
     erb :index
   end
 
+  get '/login' do
+    if session[:user_id] == nil
+      erb :'users/login'
+    else
+      redirect '/tweets'
+    end
+  end
+
+  get '/logout' do
+    # binding.pry
+    if(session[:user_id] != nil)
+      session[:user_id] = nil
+      erb :'users/login'
+    else
+      redirect '/'
+    end
+
+  end
 
 end

@@ -24,17 +24,11 @@ class UsersController < Sinatra::Base
     else
       @user = User.create(username: params[:username], email: params[:email], password: params[:password])
       session[:user_id] = @user.id
-      redirect :'/tweets'
-    end
-  end
-
-  get '/login' do
-    if session[:user_id] == nil
-      erb :'users/login'
-    else
       redirect '/tweets'
     end
   end
+
+
 
   post '/login' do
     # binding.pry
@@ -46,6 +40,7 @@ class UsersController < Sinatra::Base
       redirect '/login'
     end
   end
+
 
 
 end

@@ -1,8 +1,10 @@
 require './config/environment'
+
 require 'sinatra'
 require_relative 'app/controllers/application_controller'
 require_relative 'app/controllers/tweets_controller'
 require_relative 'app/controllers/users_controller'
+
 
 
 if ActiveRecord::Migrator.needs_migration?
@@ -10,6 +12,7 @@ if ActiveRecord::Migrator.needs_migration?
 end
 
 use Rack::MethodOverride
+
 use ApplicationController
 run TweetsController
 run UsersController
