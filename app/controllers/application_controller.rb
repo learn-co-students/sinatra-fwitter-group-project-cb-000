@@ -14,6 +14,7 @@ class ApplicationController < Sinatra::Base
     # binding.pry
     if(session[:user_id] != nil)
       @user = User.find(session[:user_id])
+      @tweets = Tweet.all
       erb :'tweets/tweets'
     else
       erb :'/users/login'
