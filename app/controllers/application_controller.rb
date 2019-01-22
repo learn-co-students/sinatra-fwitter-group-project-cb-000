@@ -14,7 +14,7 @@ class ApplicationController < Sinatra::Base
     # binding.pry
     if(session[:user_id] != nil)
       @user = User.find(session[:user_id])
-      erb :'/tweets/tweets'
+      erb :'tweets/tweets'
     else
       erb :'/users/login'
     end
@@ -36,7 +36,7 @@ class ApplicationController < Sinatra::Base
     # binding.pry
     if(session[:user_id] != nil)
       session[:user_id] = nil
-      erb :'users/login'
+      redirect 'users/login'
     else
       redirect '/'
     end
