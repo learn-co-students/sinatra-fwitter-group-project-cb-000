@@ -41,7 +41,12 @@ class ApplicationController < Sinatra::Base
     else
       redirect '/'
     end
+  end
 
+  get '/users/:username' do
+    # binding.pry
+    @user = User.find_by_slug(params[:username])
+    erb :'users/show'
   end
 
 end
