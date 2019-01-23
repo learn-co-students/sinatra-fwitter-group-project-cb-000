@@ -43,10 +43,26 @@ class ApplicationController < Sinatra::Base
     end
   end
 
+  get '/tweets/new' do
+    erb :'tweets/new'
+  end
+
+  post '/tweets/new' do
+    binding.pry
+    erb :'tweets/new'
+  end
+
   get '/users/:username' do
     # binding.pry
     @user = User.find_by_slug(params[:username])
     erb :'users/show'
   end
+
+  delete '/tweets/:id/delete' do #delete action
+    @tweet = Tweet.find_by_id(params[:id])
+    @tweet.delete
+    redirect to '/tweets'
+  end
+
 
 end
