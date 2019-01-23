@@ -101,7 +101,7 @@ class ApplicationController < Sinatra::Base
     # binding.pry
     @tweet = Tweet.find_by_id(params[:id])
     if(session[:user_id] == nil)
-      redirect to '/login'
+      erb :'login'
     elsif(@tweet.user_id == session[:user_id])
       @tweet.destroy
       redirect to '/tweets'
