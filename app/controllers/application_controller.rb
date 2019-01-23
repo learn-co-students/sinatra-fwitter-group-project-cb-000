@@ -52,7 +52,7 @@ class ApplicationController < Sinatra::Base
   end
 
   post '/tweets/new' do
-    # binding.pry
+    binding.pry
     if(params[:content] != "")
       tweet = Tweet.create(content: params[:content], user_id: session[:user_id])
       redirect "/tweets/#{tweet.id}"
