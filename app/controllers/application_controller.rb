@@ -43,7 +43,6 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/tweets/new' do
-    binding.pry
     if (session[:user_id] != nil)
       erb :'tweets/new'
     else
