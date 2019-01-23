@@ -2,12 +2,11 @@ require './config/environment'
 
 class ApplicationController < Sinatra::Base
 
-
-
   configure do
     set :public_folder, 'public'
     set :views, 'app/views'
     enable :sessions
+    set :session_secret, "secret"
   end
 
   get '/tweets' do
@@ -69,6 +68,7 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/tweets/:id/edit' do
+    # binding.pry
     if(session[:user_id] != nil)
       @tweet = Tweet.find(params[:id])
       erb :'tweets/edit_tweet'
@@ -77,13 +77,13 @@ class ApplicationController < Sinatra::Base
     end
   end
 
-  patch '/tweets/:id' do
-    binding.pry
+  patch '/tweets/:id/edit' do
+    # binding.pry
     if(session[:user_id] != nil)
       @tweet = Tweet.find(params[:id])
       @tweet.update(content: params[:content])
       @tweet.save
-      redirect to '/tweets/show_tweet'
+      redirect to '/tweets'
     else
       redirect '/users/login'
     end
