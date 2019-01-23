@@ -77,7 +77,7 @@ class ApplicationController < Sinatra::Base
     end
   end
 
-  patch '/tweets/:id/edit' do
+  patch '/tweets/:id' do
     binding.pry
     if(session[:user_id] != nil)
       @tweet = Tweet.find(params[:id])
