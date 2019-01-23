@@ -43,6 +43,7 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/tweets/new' do
+    binding.pry
     if (session[:user_id] != nil)
       erb :'tweets/new'
     else
@@ -81,7 +82,9 @@ class ApplicationController < Sinatra::Base
     binding.pry
     if(session[:user_id] != nil)
       @tweet = Tweet.find(params[:id])
-      erb :'tweets/edit_tweet'
+      @tweet.update(content: params[:content])
+      @tweet.save
+      redirect to '/tweets/show_tweet'
     else
       redirect '/users/login'
     end
@@ -93,10 +96,13 @@ class ApplicationController < Sinatra::Base
     erb :'users/show'
   end
 
-  delete '/tweets/:id/delete' do #delete action
+  delete '/tweets/:id/delete' do
+    # binding.pry
     @tweet = Tweet.find_by_id(params[:id])
-    if(@tweet.user_id == session[:user_id])
-      @tweet.delete
+    if(session[:user_id] == nil)
+      redirect to '/login'
+    elsif(@tweet.user_id == session[:user_id])
+      @tweet.destroy
       redirect to '/tweets'
     else
       redirect to '/tweets'

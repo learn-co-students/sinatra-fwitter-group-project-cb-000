@@ -1,5 +1,8 @@
+<%binding.pry%>
+<%if(@user.tweets != nil)%>
 <% @user.tweets.each do |t| %>
 <ul>
   <li><%=t.content%></li>
 </ul>
 <% end %>
+<%end%>

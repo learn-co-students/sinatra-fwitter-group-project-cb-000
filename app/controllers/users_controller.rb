@@ -35,7 +35,7 @@ class UsersController < Sinatra::Base
     @user = User.find_by(username: params[:username])
     if @user && @user.authenticate(params[:password]) != false
       session[:user_id] = @user.id
-      redirect '/tweets'
+      erb :'tweets/tweets'
     else
       redirect '/login'
     end

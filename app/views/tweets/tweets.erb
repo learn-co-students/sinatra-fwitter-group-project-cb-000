@@ -1,6 +1,13 @@
+<%binding.pry%>
 <p>Welcome, <%=@user.username%></p>
+<%if(@tweets != nil)%>
 <% @tweets.each do |t|%>
 <ul>
   <li><%=t.content%></li>
 </ul>
 <%end%>
+<%end%>
+
+<form action="/tweets/new" method="get">
+  <input type="submit" id="submit" value="Create Tweet">
+</form>
