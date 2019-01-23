@@ -48,8 +48,24 @@ class ApplicationController < Sinatra::Base
   end
 
   post '/tweets/new' do
-    binding.pry
-    erb :'tweets/new'
+    # binding.pry
+    if(params[:content] != "")
+      tweet = Tweet.create(content: params[:content], user_id: session[:user_id])
+      redirect "/tweets/#{tweet.id}"
+    else
+      redirect '/tweets/new'
+    end
+  end
+
+  get '/tweets/:id' do
+    # binding.pry
+    if(session[:user_id] != nil)
+      # @user = User.find(session[:user_id])
+      @tweet = Tweet.find(params[:id])
+      erb :'tweets/show_tweet'
+    else
+      redirect '/users/login'
+    end
   end
 
   get '/users/:username' do

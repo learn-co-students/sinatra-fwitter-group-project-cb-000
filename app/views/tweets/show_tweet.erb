@@ -1,8 +1,5 @@
-<% @user.tweets.each do |t| %>
-<ul>
-  <li><%=t.content%></li>
-</ul>
-<% end %>
+
+<%=t.content%>
 
 <form action="/tweets/<%= @tweet.id %>/delete" method="post">
   <input id="hidden" type="hidden" name="_method" value="delete">
