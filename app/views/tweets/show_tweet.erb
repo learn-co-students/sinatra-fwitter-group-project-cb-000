@@ -1,5 +1,5 @@
 
-<%=t.content%>
+<%=@tweet.content%>
 
 <form action="/tweets/<%= @tweet.id %>/delete" method="post">
   <input id="hidden" type="hidden" name="_method" value="delete">
