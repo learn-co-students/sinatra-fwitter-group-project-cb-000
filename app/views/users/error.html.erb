@@ -1,0 +1,7 @@
+<h1>Validate your input!</h1>
+<ul>
+<% @error.each do |error_message| %>
+<li><%= error_message %></li>
+<% end %>
+</ul>
+<a href="/signup">Go Back and Signup</a>

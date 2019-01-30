@@ -1,0 +1,28 @@
+<h2>Hello <%= @user.username %>!</h2>
+<h4> <%= @user.email %> </h4>
+
+<% if @user.posts = [] %>
+  <h2> You have no posts yet! </h2>
+<% else %>
+  <% @user.posts.each do |post| %>
+    <h3><%= post %>></h3>
+
+    <form method="GET" action="posts/<%= post.id %>/edit">
+    <input type="submit" value="Edit Post">
+    </form>
+
+    <br>
+  <% end %>
+<% end %>
+
+<form method="GET" action="/logout">
+  <input type="submit" value="Log Off">
+</form>
+
+<form method="GET" action="/posts/new">
+  <input type="submit" value="Create New Post">
+</form>
+
+<form method="GET" action="/users/edit">
+  <input type="submit" value="Edit Account">
+</form>
