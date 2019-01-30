@@ -2,27 +2,36 @@
 class UsersController < ApplicationController
 
   get '/signup' do
-    erb :'/users/new.html'
+    if session[:user_id] != nil
+      redirect to '/tweets'
+    else
+      erb :'/users/new.html'
+    end
   end
 
   get '/users/logon' do
-    
+    @user = User.find_by(username: params[:user][:username])
+    if @user == nil || (@user.try(:authenticate, params[:user][:password]) == false)
+      erb :'login_error.html'
+    else
+      session[:user_id] = @user.id
+      redirect to '/tweets'
+    end
   end
 
-  post '/users' do
-    @user = User.create(params[:user])
+  post '/signup' do
+    @user = User.create(params)
     @error = @user.errors.full_messages
 
     unless @error == []
-      erb :'/users/error.html'
+      redirect to '/signup'
     else
       session[:user_id] = @user.id
-      redirect to '/users/account'
+      redirect to '/tweets'
     end
-
   end
 
-  get '/users/account' do
+  get '/tweets' do
     if !Helper.is_logged_in?(session)
       erb :'login_error.html'
     else
@@ -42,7 +51,7 @@ class UsersController < ApplicationController
 
   patch '/users' do
     @user = Helper.current_user(session).update(params[:user])
-    redirect to '/users/account'
+    redirect to '/tweets'
   end
 
   get '/logout' do
