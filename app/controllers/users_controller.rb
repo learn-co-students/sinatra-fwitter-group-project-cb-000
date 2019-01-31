@@ -36,6 +36,7 @@ class UsersController < ApplicationController
       redirect to '/login'
     else
       @user = Helper.current_user(session)
+      @tweets = Tweet.all
       erb :'/users/account.html'
     end
   end
@@ -66,6 +67,6 @@ class UsersController < ApplicationController
   get '/users/:slug' do
     @user = User.find_by_slug(params[:slug])
 
-    erb :"user/tweets.html"
+    erb :"users/home.html"
   end
 end

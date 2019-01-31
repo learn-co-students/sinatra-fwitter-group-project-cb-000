@@ -1,0 +1,18 @@
+<h1><%= @user.username %></h1>
+
+<% if @user.tweets == [] %>
+  <h2>You don't have any tweets!</h2>
+<% else %>
+  <% @user.tweets.each do |tweet| %>
+    <h3><%= tweet.content %></h3>
+    <form action="POST" action="tweet/<%= tweet.id %>/edit">
+      <input type="hidden" value="patch" name="_method">
+      <input type="submit" value="Edit Tweet">
+    </form>
+  <% end %>
+<% end %>
+
+
+<form method="GET" action="/tweets">
+  <input type="submit" value="Go back to Home">
+</form>
