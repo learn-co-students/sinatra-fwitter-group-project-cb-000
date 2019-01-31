@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   extend Slugifiable::Find
 
   has_secure_password
-  has_many :posts
+  has_many :tweets
 
   validates :email, uniqueness: true, presence: true
   validates :username, uniqueness: true, presence: true

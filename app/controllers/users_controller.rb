@@ -9,9 +9,9 @@ class UsersController < ApplicationController
     end
   end
 
-  get '/users/logon' do
-    @user = User.find_by(username: params[:user][:username])
-    if @user == nil || (@user.try(:authenticate, params[:user][:password]) == false)
+  post '/login' do
+    @user = User.find_by(username: params[:username])
+    if @user == nil || (@user.try(:authenticate, params[:password]) == false)
       erb :'login_error.html'
     else
       session[:user_id] = @user.id
@@ -33,7 +33,7 @@ class UsersController < ApplicationController
 
   get '/tweets' do
     if !Helper.is_logged_in?(session)
-      erb :'login_error.html'
+      redirect to '/login'
     else
       @user = Helper.current_user(session)
       erb :'/users/account.html'
@@ -55,7 +55,17 @@ class UsersController < ApplicationController
   end
 
   get '/logout' do
-    session.clear
-    redirect to '/'
+    if session[:user_id] == nil
+      redirect to '/'
+    else
+      session.clear
+      redirect to '/login'
+    end
+  end
+
+  get '/users/:slug' do
+    @user = User.find_by_slug(params[:slug])
+
+    erb :"user/tweets.html"
   end
 end

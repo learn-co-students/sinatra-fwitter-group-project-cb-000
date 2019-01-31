@@ -1,14 +1,14 @@
-<h2>Hello <%= @user.username %>!</h2>
+<h2>Welcome, <%= @user.username %>!</h2>
 <h4> <%= @user.email %> </h4>
 
-<% if @user.posts = [] %>
+<% if @user.tweets == [] %>
   <h2> You have no posts yet! </h2>
 <% else %>
-  <% @user.posts.each do |post| %>
-    <h3><%= post %>></h3>
+  <% @user.tweets.each do |tweet| %>
+    <h3><%= tweet.content %></h3>
 
-    <form method="GET" action="posts/<%= post.id %>/edit">
-    <input type="submit" value="Edit Post">
+    <form method="GET" action="tweets/<%= tweet.id %>/edit">
+    <input type="submit" value="Edit Tweet">
     </form>
 
     <br>
