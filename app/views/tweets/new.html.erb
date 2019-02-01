@@ -1,0 +1,10 @@
+<h1><%= @user.username %>'s Tweets!</h1>
+<form method="POST" action="/tweets/new">
+  <textarea rows="4" cols="50" name="content" placeholder="Enter tweet here..."></textarea>
+  <br>
+  <input type="submit" id="submit" value="Tweet">
+</form>
+
+<form method="GET" action="/tweets">
+  <input type="submit" value="Back to Home">
+</form>
