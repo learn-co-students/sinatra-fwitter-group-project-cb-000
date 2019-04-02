@@ -3,9 +3,11 @@ class UsersController < ApplicationController
   set :views, Proc.new { File.join(root, "../views/") }
 
   get '/login' do
+
     if Helpers.is_logged_in?(session)
       redirect to '/tweets'
     end
+
     @error = ""
     erb :'users/login'
   end
@@ -28,11 +30,16 @@ class UsersController < ApplicationController
     if Helpers.is_logged_in?(session)
       erb :'users/logout'
     else
+
       redirect to '/'
+
+      erb :'index'
+
     end
   end
 
   post '/logout' do
+
     if Helpers.is_logged_in?(session)
       session.clear
       redirect to '/'
@@ -45,6 +52,13 @@ class UsersController < ApplicationController
     if Helpers.is_logged_in?(session)
       redirect to '/tweets'
     end
+
+    session.clear
+    erb :'index'
+  end
+
+  get '/signup' do
+
     @error = ""
     erb :'users/create_user'
   end
@@ -55,17 +69,25 @@ class UsersController < ApplicationController
       @error += "Username already in use"
     end
     if @error != ""
+
       #erb :'users/create_user'
       redirect to '/signup'
     else
       dude = User.create(username: params[:username], password: params[:password], email: params[:email], slug: slugify(params[:username]))
+
+      erb :'users/create_user'
+    else
+      dude = User.create(username: params[:username], password: params[:password], email: params[:email])
+
       session[:user_id] = dude.id
       redirect to '/tweets'
     end
   end
+
   get '/users/:slug' do
     @user = User.find_by(slug: params[:slug])
     erb :'users/show'
   end
+
 
 end

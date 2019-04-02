@@ -16,6 +16,7 @@ def signup_error(params)
   end
   empty_fields
 end
+<<<<<<< HEAD
 
 def slugify(slug)
   spots = slug.length
@@ -44,3 +45,5 @@ def deslugify(slug)
   end
   value = ray.join
 end
+=======
+>>>>>>> e498e2874dc1c65b9572a3cc6e96705b3cab98ce
