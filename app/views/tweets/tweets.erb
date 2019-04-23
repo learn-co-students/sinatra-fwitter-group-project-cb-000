@@ -10,7 +10,7 @@
   <%@tweets.each do |tweet|%>
     <tr>
       <td><a href="/tweets/<%=tweet.id%>"><%=tweet.content.slice(0, 30) + '...'%></a></td>
-      <td><%=tweet.user.usename%></td>
+      <td><%=tweet.user.username%></td>
       <%if current_user == tweet.user then%>
         <td><a href="/tweets/<%=tweet.id%>/edit">Edit</a></td>
         <td><form action="/tweets/<%=tweet.id%>/delete" method="post">

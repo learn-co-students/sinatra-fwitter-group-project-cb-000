@@ -19,11 +19,15 @@ class TweetsController < ApplicationController
 
   post '/tweets' do
     if logged_in? then
-      tweet = Tweet.new()
-      tweet.content = params[:tweet][:content]
-      tweet.user = current_user
-      tweet.save
-      redirect "/tweets/#{tweet.id}"
+      if params[:tweet][:content] != "" then
+        tweet = Tweet.new()
+        tweet.content = params[:tweet][:content]
+        tweet.user = current_user
+        tweet.save
+        redirect "/tweets/#{tweet.id}"
+      else
+        redirect '/tweets/new'
+      end
     else
       redirect '/login'
     end
@@ -39,24 +43,32 @@ class TweetsController < ApplicationController
   end
 
   get '/tweets/:id/edit' do
-    @tweet = Tweet.find(params[:id])
-    if current_user == @tweet.user then
-      erb :'tweets/edit_tweet'
+    if logged_in? then
+      @tweet = Tweet.find(params[:id])
+      if current_user == @tweet.user then
+        erb :'tweets/edit_tweet'
+      else
+        redirect "/tweets/#{@tweet.id}"
+      end
     else
-      redirect "/tweets/#{@tweet.id}"
+      redirect '/login'
     end
   end
 
   patch '/tweets/:id' do
     tweet = Tweet.find(params[:id])
     if current_user == tweet.user then
-      tweet.content = params[:tweet][:content]
-      tweet.update
+      if params[:tweet][:content] != "" then
+        tweet.content = params[:tweet][:content]
+        tweet.save
+      else
+        redirect "/tweets/#{tweet.id}/edit"
+      end
     end
     redirect "/tweets/#{tweet.id}"
   end
 
-  delete 'tweets/:id/delete' do
+  delete '/tweets/:id/delete' do
     tweet = Tweet.find(params[:id])
     if current_user == tweet.user then
       tweet.delete
