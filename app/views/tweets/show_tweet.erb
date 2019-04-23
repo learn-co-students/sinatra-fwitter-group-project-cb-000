@@ -1,0 +1,22 @@
+<h1>View Tweet Details</h1>
+
+<h2>User who authored this tweet: <%=@tweet.user.username%></h2>
+<h2>Tweet content:</h2>
+<br>
+<p><%=@tweet.content%></p>
+<br>
+<br>
+<%if logged_in? then%>
+  <%if current_user == @tweet.user then%>
+    <a href="/tweets/<%=@tweet.id%>/edit">Edit this tweet</a><br><br>
+    <form action="/tweets/<%=@tweet.id%>/delete" method="post">
+      <input id="hidden" type="hidden" name="_method" value="delete">
+      <input type="submit" name="" value="Delete Tweet">
+    </form>
+    <br>
+    <br>
+  <%end%>
+  <a href="/">Home</a> <a href="/tweets">View All Tweets</a> <a href="/logout">Logout</a>
+<%else%>
+  <a href="/">Home</a> <a href="/tweets">View All Tweets</a> <a href="/login">Login</a> or <a href="/signup">Sign-up</a>
+<%end%>
