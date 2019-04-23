@@ -1,4 +1,9 @@
-<h1>Welcome to Fwitter</h1>
+<h2>Welcome to Fwitter!</h2>
 
-<p>Please <a href="/login">login</a> or <a href="/signup">sign-up</a> for an account.</p>
-<p>Alternatively you can <a href="/tweets">view all available tweets</a> as a guest.</p>
+<%if !logged_in? then%>
+  <p>Please <a href="/login">login</a> or <a href="/signup">sign-up</a> for an account.</p>
+  <p>Alternatively you can <a href="/tweets">view all available tweets</a> as a guest.</p>
+<%else%>
+  <p>You are currently logged in as user: <%=current_user.username%></p>
+  <a href="/">Home</a> <a href="/tweets">View All Tweets</a> <a href="/logout">Logout</a>
+<%end%>
