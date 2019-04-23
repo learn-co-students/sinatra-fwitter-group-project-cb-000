@@ -2,8 +2,7 @@
 
 <%if !logged_in? then%>
   <p>Please <a href="/login">login</a> or <a href="/signup">sign-up</a> for an account.</p>
-  <p>Alternatively you can <a href="/tweets">view all available tweets</a> as a guest.</p>
 <%else%>
   <p>You are currently logged in as user: <%=current_user.username%></p>
-  <a href="/">Home</a> <a href="/tweets">View All Tweets</a> <a href="/logout">Logout</a>
+  <a href="/">Home</a> - <a href="/users/<%=current_user.username%>">View All My Tweets</a> - <a href="/tweets">View All Tweets</a> - <a href="/logout">Logout</a>
 <%end%>
