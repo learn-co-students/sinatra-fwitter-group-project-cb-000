@@ -1,0 +1,19 @@
+<%if current_user == @tweet.user%>
+  <h2>Edit Tweet</h2>
+  <form action="/tweets/<%=@tweet.id%>" method="post">
+    <input id="hidden" type="hidden" name="_method" value="patch">
+    <label for="content">Content:</label><br>
+    <textarea id="content" name="tweet[content]" rows="5" cols="30" required><%=@tweet.content%></textarea><br>
+    <input id="submit" type="submit" name="" value="Edit Tweet">
+  </form>
+  <br>
+  <br>
+  <a href="/">Home</a> - <a href="/users/<%=current_user.slug%>">View All My Tweets</a> - <a href="/logout">Logout</a>
+<%else%>
+  <p>Only the original author can edit a specific tweet.</p><br>
+  <%if logged_in? then%>
+    <a href="/">Home</a> - <a href="/users/<%=current_user.slug%>">View All My Tweets</a> - <a href="/logout">Logout</a>
+  <%else%>
+    <a href="/">Home</a> - <a href="/login">Login</a> or <a href="/signup">Sign-up</a>
+  <%end%>
+<%end%>

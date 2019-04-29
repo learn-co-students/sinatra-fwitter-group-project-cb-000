@@ -1,0 +1,14 @@
+<%if logged_in? then%>
+  <h2>Create New Tweet</h2>
+  <form action="/tweets" method="post">
+    <label for="content">Content:</label><br>
+    <textarea id="content" name="tweet[content]" rows="5" cols="30" required></textarea><br>
+    <input id="submit" type="submit" name="" value="Create Tweet">
+  </form>
+  <br>
+  <br>
+  <a href="/">Home</a> - <a href="/tweets">View All Tweets</a> - <a href="/logout">Logout</a>
+<%else%>
+  <p>You cannot create a new tweet without being logged in.</p><br>
+  <a href="/">Home</a> - <a href="/login">Login</a> or <a href="/signup">Sign-up</a>
+<%end%>

@@ -1,0 +1,31 @@
+<h2>Tweets from <%=@user.username%></h2>
+<br>
+<table>
+  <tr>
+    <th>Tweet</th>
+    <th>Edit</th>
+    <th>Delete</th>
+  </tr>
+  <%@user.tweets.each do |tweet|%>
+    <tr>
+      <td><a href="/tweets/<%=tweet.id%>"><%=tweet.content.slice(0, 30) + '...'%></a></td>
+      <%if logged_in? && current_user == @user%>
+        <td><a href="/tweets/<%=tweet.id%>/edit">Edit</a></td>
+        <td><form action="/tweets/<%=tweet.id%>/delete" method="post">
+              <input id="hidden" type="hidden" name="_method" value="delete">
+              <input type="submit" name="" value="Delete">
+        </form></td>
+      <%else%>
+        <td></td>
+        <td></td>
+      <%end%>
+    </tr>
+  <%end%>
+<table>
+<br>
+<br>
+<%if logged_in? then%>
+  <a href="/">Home</a> - <a href="/tweets">View Tweets from All Users</a> - <a href="/tweets/new">New Tweet</a> - <a href="/logout">Logout</a>
+<%else%>
+  <a href="/">Home</a> - <a href="/login">Login</a> or <a href="/signup">Sign-up</a>
+<%end%>
