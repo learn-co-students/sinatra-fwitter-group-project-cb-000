@@ -97,6 +97,7 @@ describe ApplicationController do
       }
       post '/login', params
       get '/login'
+
       expect(last_response.location).to include("/tweets")
     end
   end

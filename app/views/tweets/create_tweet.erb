@@ -1,0 +1,22 @@
+
+
+<% if flash.has?(:message) %>
+<%= flash[:message] %>
+<% end %>
+
+<h1>Create a Tweet</h1>
+
+<form action="/tweets" method="post">
+  <p>Tweet:<input type="text" id="content" name="content" id="tweet_content"></p>
+  <input type="submit" id="submit" value="Tweet">
+</form>
+
+<!-- Return to Tweets Page -->
+<!-- <form action="/tweets" method="get">
+  <input type="submit" id="submit" value="View All Tweets">
+</form> -->
+
+<!-- Link to Log Out -->
+<!-- <form action="/logout" method="get">
+  <input type="submit" id="logout" value="Log Out">
+</form> -->
